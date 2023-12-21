@@ -1,0 +1,22 @@
+Keyword  Score
+NBA        4
+basketball 4
+points    2.5
+game      2.5
+injury    1.5
+highlights 2
+player     2
+rebounds  2.5
+assists   2.5
+dominate  1.5
+food       -4
+occupation -2
+color      -4
+football   -4
+soccer     -4
+fruit      -4
+dictionary -5
+camel      -3
+kangaroo   -2
+Jessie     -2
+
