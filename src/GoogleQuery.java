@@ -21,13 +21,7 @@ public class GoogleQuery
 {
 	public String searchKeyword;
 	public String url;
-	public String content;
-	
-	
-	
-	
-
-	
+	public String content;	
 	public GoogleQuery(String searchKeyword)
 	{
 		this.searchKeyword = searchKeyword;
@@ -35,14 +29,8 @@ public class GoogleQuery
 		   
 		try 
 		{
-			// This part has been specially handled for Chinese keyword processing. 
-			// You can comment out the following two lines 
-			// and use the line of code in the lower section. 
-			// Also, consider why the results might be incorrect 
-			// when entering Chinese keywords.
-		
 			String encodeKeyword=java.net.URLEncoder.encode(searchKeyword,"utf-8");
-			this.url = "https://www.google.com/search?q="+encodeKeyword+"&oe=utf8&num=100";
+			this.url = "https://www.google.com/search?q="+encodeKeyword+"&oe=utf8&num=10";
 			
 			// this.url = "https://www.google.com/search?q="+searchKeyword+"&oe=utf8&num=20";
 		}
