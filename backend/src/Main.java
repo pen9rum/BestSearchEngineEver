@@ -12,7 +12,7 @@ import java.security.NoSuchAlgorithmException;
 
 public class Main 
 {
-	public static void main(String[] args) throws KeyManagementException, NoSuchAlgorithmException 
+	public static void main(String[] args) throws KeyManagementException, NoSuchAlgorithmException
 	{
 		
 			
@@ -66,8 +66,17 @@ public class Main
                 // Output the sorted results
                
             } kLst.sortAndOutput();
+            PlayerStats stats = new PlayerStats(kLst.getNBAstatUrl());
+            stats.getStats();
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        } catch (InterruptedException  e1) {
+			 e1.printStackTrace();
+		}
+		
+		
+		
+			
+		
     }
 }

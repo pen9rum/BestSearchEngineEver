@@ -16,7 +16,7 @@ public class PlayerStats {
 		
 	public void getStats() throws InterruptedException{
 		
-	playerUrl = "https://www.nba.com/player/201939" ; // 201939是Stephen Curry的球员ID，你可以替换成其他球员的ID
+	//playerUrl = "https://www.nba.com/player/201939" ; // 201939是Stephen Curry的球员ID，你可以替换成其他球员的ID
  	//String playerUrl = "https://www.nba.com/player/1630173/precious-achiuwa";
      try {
          Connection connection = Jsoup.connect(playerUrl)
@@ -31,7 +31,7 @@ public class PlayerStats {
 
          // 提取球员的得分
          String point = document.select("p.PlayerSummary_playerStatValue___EDg_").text();
-         System.out.println("球员數據: " + point);
+         System.out.println("球员數據: \n" + "PPG " + "RPG " + "APG " + "PIE " + "\n" + point);
 
          // 提取球员的统计数据
          
