@@ -124,55 +124,6 @@ return totalScore;
         resultItemsWithScores.set(bIndex, temp);
     }
 	
-	/*public void sort()
-	{
-		if (lst.size() == 0)
-		{
-			System.out.println("InvalidOperation");
-		}
-		else
-		{
-			quickSort(0, lst.size() - 1);
-		}
-	}
-
-	// YOUR TURN
-	// 1. Implement QuickSort algorithm
-	// We assume that you are using an in-place approach, hence the return type is
-	// void. If you prefer to use a different approach, you can modify this return
-	// type (e.g., change it to return ArrayList<Keyword>)
-	private void quickSort(int leftbound, int rightbound)
-	{
-		 if (leftbound >= rightbound) {
-		         return;
-		     }
-		     Keyword pivot = lst.get(rightbound);
-		     int leftIndex = leftbound;
-		     int rightIndex = rightbound - 1;
-
-		     while (leftIndex <= rightIndex) {
-		         while (leftIndex <= rightIndex && lst.get(leftIndex).count <= pivot.count) {
-		             leftIndex++;
-		         }
-		         while (leftIndex <= rightIndex && lst.get(rightIndex).count > pivot.count) {
-		             rightIndex--;
-		         }
-		         if (leftIndex < rightIndex) {
-		             swap(leftIndex, rightIndex);   //把小的往前跟大的換
-		         }
-		     }
-		     swap(leftIndex, rightbound);    //把大的跟pivot換
-		     quickSort(leftbound, leftIndex - 1);
-		     quickSort(leftIndex + 1, rightbound);
-	}
-
-	private void swap(int aIndex, int bIndex)
-	{
-		Keyword temp = lst.get(aIndex);
-		lst.set(aIndex, lst.get(bIndex));
-		lst.set(bIndex, temp);
-	}*/
-
 	public void output()
 	{
 		StringBuilder sb = new StringBuilder();

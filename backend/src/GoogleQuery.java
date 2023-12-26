@@ -1,3 +1,4 @@
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -16,35 +17,35 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import java.io.IOException;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 public class GoogleQuery 
 {
 	public String searchKeyword;
 	public String url;
-	public String content;
-	
-	
-	
-	
-
-	
+	public String content;	
 	public GoogleQuery(String searchKeyword)
 	{
 		this.searchKeyword = searchKeyword;
 		
 		   
 		try 
-		{
-			// This part has been specially handled for Chinese keyword processing. 
-			// You can comment out the following two lines 
-			// and use the line of code in the lower section. 
-			// Also, consider why the results might be incorrect 
-			// when entering Chinese keywords.
-		
+		{		
 			String encodeKeyword=java.net.URLEncoder.encode(searchKeyword,"utf-8");
 			this.url = "https://www.google.com/search?q="+encodeKeyword+"&oe=utf8&num=100";
-			
-			// this.url = "https://www.google.com/search?q="+searchKeyword+"&oe=utf8&num=20";
 		}
 		catch (Exception e)
 		{
@@ -59,14 +60,8 @@ public class GoogleQuery
 
 		URL u = new URL(url);
 		URLConnection conn = u.openConnection();
-		
-		    
-		//set HTTP header
-		conn.setRequestProperty("User-agent", "Chrome/107.0.5304.107");
-		 // 設定 HTTP header
-        //conn.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3");
 
-		// 引入延遲
+		conn.setRequestProperty("User-agent", "Chrome/107.0.5304.107");
         try {
         	Thread.sleep(DynamicDelayCrawler.getCurrentDelay());
         } catch (InterruptedException e) {
@@ -85,92 +80,60 @@ public class GoogleQuery
 		return retVal;
 	}
 	
-	 public ArrayList<ResultItem> query() throws IOException {
-	        if (content == null) {
-	            content = fetchContent();
-	        }
+	public ArrayList<ResultItem> query() throws IOException, InterruptedException {
+	    if (content == null) {
+	        content = fetchContent();
+	    }
 
-	        ArrayList<ResultItem> resultItems = new ArrayList<>();
+	    Document doc = Jsoup.parse(content);
+	    Elements lis = doc.select("div").select(".kCrYT");
 
-	        Document doc = Jsoup.parse(content);
-	        Elements lis = doc.select("div");
-			lis = lis.select(".kCrYT");
-	       
+	    ExecutorService executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
+	    List<Future<ResultItem>> futures = new ArrayList<>();
 
-	        for (Element li : lis) {
+	    for (Element li : lis) {
+	        Future<ResultItem> future = executor.submit(() -> {
 	            try {
 	                String citeUrl = li.select("a").get(0).attr("href").replace("/url?q=", "");
 	                String title = li.select("a").get(0).select(".vvjwJb").text();
 	                
-	                if (title.equals("")) {
-	                    continue;
+	                if (!title.isEmpty()) {
+	                    String decodedUrl = URLDecoder.decode(citeUrl, StandardCharsets.UTF_8.toString());
+	                    if (decodedUrl.contains("&")) {
+	                        int position = decodedUrl.indexOf("&");
+	                        if (position > -1 && decodedUrl.charAt(position + 1) == 's' && decodedUrl.charAt(position + 2) == 'a') {
+	                            decodedUrl = decodedUrl.substring(0, position);
+	                        }
+	                    }
+	                    return new ResultItem(title, decodedUrl);
 	                }
-	                String decodedUrl = URLDecoder.decode(citeUrl, StandardCharsets.UTF_8.toString());
-	                if(decodedUrl.contains("&")){
-	                	
-	                	int position = decodedUrl.indexOf("&");
-	                	if (decodedUrl.charAt(position + 1) == 's' && decodedUrl.charAt(position + 2) == 'a') {
-	                	    decodedUrl = decodedUrl.substring(0, position);
-	                	}
-	                	
-	                }
-	               // System.out.println("Title: " + title + " , url1: " + decodedUrl);
-	               
-	                ResultItem resultItem = new ResultItem(title, decodedUrl);
-	                resultItems.add(resultItem);
-
 	            } catch (IndexOutOfBoundsException e) {
-	                // Handle the exception if needed
 	            }
-	        }
+	            return null; 
+	        });
 
-	        return resultItems;
+	        futures.add(future);
 	    }
-	/*public HashMap<String, String> query() throws IOException
-	{
-		if(content == null)
-		{
-			content = fetchContent();
-		}
 
-		HashMap<String, String> retVal = new HashMap<String, String>();
-		
-		/* 
-		 * some Jsoup source
-		 * https://jsoup.org/apidocs/org/jsoup/nodes/package-summary.html
-		 * https://www.1ju.org/jsoup/jsoup-quick-start
- 		 */
-		
-	/*	//using Jsoup analyze html string
-		Document doc = Jsoup.parse(content);
-		
-		//select particular element(tag) which you want 
-		Elements lis = doc.select("div");
-		lis = lis.select(".kCrYT");
-		
-		for(Element li : lis)
-		{
-			try 
-			{
-				String citeUrl = li.select("a").get(0).attr("href").replace("/url?q=", "");
-				String title = li.select("a").get(0).select(".vvjwJb").text();
-				
-				if(title.equals("")) 
-				{
-					continue;
-				}
-				
-				System.out.println("Title: " + title  + " , url: " + citeUrl);
-				
-				//put title and pair into HashMap
-				retVal.put(title, citeUrl);
+	    executor.shutdown();
+	    executor.awaitTermination(Long.MAX_VALUE, TimeUnit.NANOSECONDS);
 
-			} catch (IndexOutOfBoundsException e) 
-			{
-//				e.printStackTrace();
-			}
-		}
-		
-		return retVal;
-	} */
+	    ArrayList<ResultItem> resultItems = new ArrayList<>();
+	    for (Future<ResultItem> future : futures) {
+	        try {
+	            ResultItem result = future.get();
+	            if (result != null) {
+	                resultItems.add(result);
+	            }
+	        } catch (InterruptedException e) {
+	           
+	            Thread.currentThread().interrupt(); 
+	           
+	        } catch (ExecutionException e) {
+	            
+	        }
+	    }
+	    return resultItems;
+	}
+
 }

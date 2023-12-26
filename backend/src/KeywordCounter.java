@@ -55,31 +55,7 @@ public class KeywordCounter {
 	    }
 
 	    return -1;
-	}
-
-		/*do
-        {
-            if (P.charAt(j) == T.charAt(i))
-            {
-                if (j == 0)
-                {
-                    return i; 
-                }
-                else
-                {
-                    i--;
-                    j--;
-                }
-            }
-            else
-            {
-                i = i + P.length() - min(j, 1+last(T.charAt(i), P));    
-                j = P.length()-1;
-            }
-        } while(i < T.length() && j >=0);
-
-        return -1;*/
-    
+	}   
     public static int last(char c, String P)
     {
         for (int i=P.length()-1; i>=0; i--)
@@ -104,15 +80,10 @@ public class KeywordCounter {
 	public int countKeyword(String keyword) {
 		
 		    try {
-		        // 調用 fetchContent 方法
 		       
-		        // 其他處理
 		        if (content == null) {
 					content = fetchContent();
 				}
-
-				// To do a case-insensitive search, we turn the whole content and keyword into
-				// upper-case:
 				content = content.toUpperCase();
 				keyword = keyword.toUpperCase();
 
@@ -123,15 +94,10 @@ public class KeywordCounter {
 					content = content.substring(appear + keyword.length() - 1);
 					retVal++;
 				}	
-				
-				// 1. calculates appearances of keyword (Bonus: Implement Boyer-Moore Algorithm)
-
 				return retVal;
 				
 		    } catch (IOException e) {
-		        // 處理錯誤，可以輸出錯誤信息
-		        //System.err.println("Error fetching content: " + e.getMessage());
-		        // 或者只是忽略這個錯誤，繼續執行
+
 		        return 0; // 或者其他適當的默認值
 		    }
 		}

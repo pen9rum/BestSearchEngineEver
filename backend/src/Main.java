@@ -13,9 +13,7 @@ import java.security.NoSuchAlgorithmException;
 public class Main 
 {
 	public static void main(String[] args) throws KeyManagementException, NoSuchAlgorithmException
-	{
-		
-			
+	{			
 		try {
             Scanner scn = new Scanner(System.in);
             String queryInput = scn.next();
@@ -52,19 +50,11 @@ public class Main
                 
                 float totalScore = kLst.calculateTotalScore();
                 kLst.addResultItemWithScore(resultItem, totalScore);
-
-             
-                //kLst.sort();
-
-                // Reset the scanner position to the beginning of the file
                 fileSC = new Scanner(file);
                 // Skip the first line
                 if (fileSC.hasNextLine()) {
                     fileSC.nextLine();
-                }
-                
-                // Output the sorted results
-               
+                }         
             } kLst.sortAndOutput();
             PlayerStats stats = new PlayerStats(kLst.getNBAstatUrl());
             stats.getStats();
