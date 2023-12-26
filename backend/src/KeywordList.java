@@ -1,6 +1,10 @@
 import java.util.ArrayList;
 import java.util.LinkedList;
-
+import java.util.List;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 public class KeywordList
 {
 	private LinkedList<Keyword> lst;
@@ -22,14 +26,35 @@ public class KeywordList
         resultItemsWithScores.add(resultItemWithScore);
     }
 	
-	public float calculateTotalScore() {
-	    float totalScore = 0;
-	    for (Keyword k : lst) {
-	        totalScore += k.getCount() * k.getWeight();
-	    }
-	    return totalScore;
-	}
-	
+	/*public float calculateTotalScore2() {
+    float totalScore = 0;
+    for (Keyword k : lst) {
+        totalScore += k.getCount() * k.getWeight();
+    }
+    return totalScore;
+}*/
+public float calculateTotalScore() {
+ExecutorService executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
+List<Future<Float>> futures = new ArrayList<>();
+
+
+for (Keyword k : lst) { // 使用內部的 Keyword 列表
+    Callable<Float> task = () -> k.getCount() * k.getWeight();
+    futures.add(executor.submit(task));
+}
+
+float totalScore = 0;
+for (Future<Float> future : futures) {
+    try {
+        totalScore += future.get();
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
+
+executor.shutdown();
+return totalScore;
+}
 	public void sortAndOutput() {
         // Sort the list by score in descending order
         sort(0, resultItemsWithScores.size() - 1);
