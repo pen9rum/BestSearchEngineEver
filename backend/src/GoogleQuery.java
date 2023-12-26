@@ -68,7 +68,7 @@ public class GoogleQuery
 
 		// 引入延遲
         try {
-        	Thread.sleep(DynamicDelayCrawler.getCurrentDelay());
+            Thread.sleep(1);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

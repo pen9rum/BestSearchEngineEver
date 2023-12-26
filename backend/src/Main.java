@@ -29,7 +29,7 @@ public class Main
             KeywordList kLst;
             String urlStr;
             KeywordCounter counter = null;
-            File file = new File("input.txt");
+            File file = new File("input_personal.txt");
             Scanner fileSC = new Scanner(file);
 
             // Skip the first line
