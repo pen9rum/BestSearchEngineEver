@@ -37,7 +37,7 @@ public class GoogleQuery
 	public String searchKeyword;
 	public String url;
 	public String content;	
-	public GoogleQuery(String searchKeyword)
+	public GoogleQuery(String searchKeyword,int search_value)
 	{
 		this.searchKeyword = searchKeyword;
 		
@@ -45,7 +45,8 @@ public class GoogleQuery
 		try 
 		{		
 			String encodeKeyword=java.net.URLEncoder.encode(searchKeyword,"utf-8");
-			this.url = "https://www.google.com/search?q="+encodeKeyword+"&oe=utf8&num=100";
+			
+			this.url = "https://www.google.com/search?q="+encodeKeyword+"&oe=utf8&num="+search_value;
 		}
 		catch (Exception e)
 		{

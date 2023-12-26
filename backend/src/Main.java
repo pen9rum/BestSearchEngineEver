@@ -17,7 +17,8 @@ public class Main
 		try {
             Scanner scn = new Scanner(System.in);
             String queryInput = scn.next();
-            GoogleQuery googleQuery = new GoogleQuery(queryInput);
+            int searchValue = scn.nextInt(); 
+            GoogleQuery googleQuery = new GoogleQuery(queryInput,searchValue);
 
             ArrayList<ResultItem> results = googleQuery.query();
             for(ResultItem result : results) {
@@ -27,7 +28,7 @@ public class Main
             KeywordList kLst;
             String urlStr;
             KeywordCounter counter = null;
-            File file = new File("input_personal.txt");
+            File file = new File("input.txt");
             Scanner fileSC = new Scanner(file);
 
             // Skip the first line

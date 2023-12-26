@@ -36,72 +36,64 @@ public class KeywordCounter {
 		return retVal;
 	}
 
-	public int BoyerMoore(String T, String P) {
-		int i = P.length() -1;
-		int j = P.length() -1;
-	    while (i < T.length() && j >= 0) {
-	        if (P.charAt(j) == T.charAt(i)) {
-	            if (j == 0) {
-	                return i;
-	            } else {
-	                i--;
-	                j--;
+	 public int countKeyword(String keyword) {
+	        try {
+	            if (content == null) {
+	                content = fetchContent();
 	            }
-	        } else {
-	            int lastCharIndex = last(T.charAt(i), P);
-	            i = i + P.length() - min(j, 1 + lastCharIndex);
-	            j = P.length() - 1;
+	            content = content.toUpperCase();
+	            keyword = keyword.toUpperCase();
+
+	            return KMP(content, keyword);
+	        } catch (IOException e) {
+	            return 0; 
 	        }
 	    }
+	    public int KMP(String text, String pattern) {
+	        int[] lps = computeLPSArray(pattern);
+	        int j = 0; 
+	        int count = 0; 
+	        for (int i = 0; i < text.length(); ) {
+	            if (pattern.charAt(j) == text.charAt(i)) {
+	                j++;
+	                i++;
+	            }
+	            if (j == pattern.length()) {
+	                count++; // Found pattern
+	                j = lps[j - 1];
+	            } else if (i < text.length() && pattern.charAt(j) != text.charAt(i)) {
+	                if (j != 0) {
+	                    j = lps[j - 1];
+	                } else {
+	                    i++;
+	                }
+	            }
+	        }
+	        return count;
+	    }
 
-	    return -1;
-	}   
-    public static int last(char c, String P)
-    {
-        for (int i=P.length()-1; i>=0; i--)
-        {
-            if (P.charAt(i) == c)
-            {
-                return i;
-            }
-        }
-        return -1;
-    }
+	    private int[] computeLPSArray(String pattern) {
+	        int[] lps = new int[pattern.length()];
+	        int length = 0; // length of the previous longest prefix suffix
+	        int i = 1;
+	        lps[0] = 0; // lps[0] is always 0
 
-	public int min(int a, int b) {
-		if (a < b)
-			return a;
-		else if (b < a)
-			return b;
-		else
-			return a;
-	}
+	        while (i < pattern.length()) {
+	            if (pattern.charAt(i) == pattern.charAt(length)) {
+	                length++;
+	                lps[i] = length;
+	                i++;
+	            } else {
+	                if (length != 0) {
+	                    length = lps[length - 1];
+	                } else {
+	                    lps[i] = length;
+	                    i++;
+	                }
+	            }
+	        }
+	        return lps;
+	    }
 
-	public int countKeyword(String keyword) {
-		
-		    try {
-		       
-		        if (content == null) {
-					content = fetchContent();
-				}
-				content = content.toUpperCase();
-				keyword = keyword.toUpperCase();
-
-				int retVal = 0;
-				
-				while (this.BoyerMoore(content, keyword) != -1) {
-					int appear = this.BoyerMoore(content, keyword);
-					content = content.substring(appear + keyword.length() - 1);
-					retVal++;
-				}	
-				return retVal;
-				
-		    } catch (IOException e) {
-
-		        return 0; // 或者其他適當的默認值
-		    }
-		}
 
 	}
-
-
