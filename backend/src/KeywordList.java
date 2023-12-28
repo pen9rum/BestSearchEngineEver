@@ -47,6 +47,12 @@ float totalScore = 0;
 for (Future<Float> future : futures) {
     try {
         totalScore += future.get();
+        if(totalScore<=-10000)
+        {
+        	totalScore=-30000;
+        	break;
+        }
+        
     } catch (Exception e) {
         e.printStackTrace();
     }
