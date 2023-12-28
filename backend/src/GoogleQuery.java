@@ -106,6 +106,12 @@ public class GoogleQuery
 	                            decodedUrl = decodedUrl.substring(0, position);
 	                        }
 	                    }
+	                    if (decodedUrl.contains("n")) {
+	                        int position = decodedUrl.indexOf("n");
+	                        if (position > -1 && decodedUrl.charAt(position + 1) == 'e' && decodedUrl.charAt(position + 2) == 'w' &&  decodedUrl.charAt(position + 3) == 's') {
+	                        	return null;
+	                        }
+	                    }
 	                    return new ResultItem(title, decodedUrl);
 	                }
 	            } catch (IndexOutOfBoundsException e) {
