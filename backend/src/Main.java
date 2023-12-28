@@ -1,31 +1,30 @@
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStreamReader;
-import java.net.URLDecoder;
-import java.nio.charset.StandardCharsets;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 
-public class Main 
-{
-	public static void main(String[] args) throws KeyManagementException, NoSuchAlgorithmException
-	{			
-		try {
+public class Main {
+    public static void main(String[] args) throws KeyManagementException, NoSuchAlgorithmException {
+        try {
             Scanner scn = new Scanner(System.in);
+         
             String queryInput = scn.next();
-            int searchValue = scn.nextInt(); 
-            GoogleQuery googleQuery = new GoogleQuery(queryInput,searchValue);
+            
+            int searchValue = scn.nextInt();
+            
+            // Create a GoogleQuery instance with user input
+            GoogleQuery googleQuery = new GoogleQuery(queryInput, searchValue);
 
             ArrayList<ResultItem> results = googleQuery.query();
-            for(ResultItem result : results) {
-            	System.out.println(result);
+            for (ResultItem result : results) {
+                System.out.println(result);
             }
 
-            KeywordList kLst;
+            // Pass the queryInput to KeywordList constructor
+            KeywordList kLst = new KeywordList(queryInput);
+
             String urlStr;
             KeywordCounter counter = null;
             File file = new File("input.txt");
@@ -35,8 +34,6 @@ public class Main
             if (fileSC.hasNextLine()) {
                 fileSC.nextLine();
             }
-
-            kLst = new KeywordList();
 
             for (ResultItem resultItem : results) {
                 counter = new KeywordCounter(resultItem.getUrl());
@@ -48,26 +45,22 @@ public class Main
                     Keyword k = new Keyword(keyword, count, weight);
                     kLst.add(k);
                 }
-                
+
                 float totalScore = kLst.calculateTotalScore();
                 kLst.addResultItemWithScore(resultItem, totalScore);
                 fileSC = new Scanner(file);
                 // Skip the first line
                 if (fileSC.hasNextLine()) {
                     fileSC.nextLine();
-                }         
-            } kLst.sortAndOutput();
+                }
+            }
+            kLst.sortAndOutput();
             PlayerStats stats = new PlayerStats(kLst.getNBAstatUrl());
             stats.getStats();
         } catch (IOException e) {
             e.printStackTrace();
-        } catch (InterruptedException  e1) {
-			 e1.printStackTrace();
-		}
-		
-		
-		
-			
-		
+        } catch (InterruptedException e1) {
+            e1.printStackTrace();
+        }
     }
 }

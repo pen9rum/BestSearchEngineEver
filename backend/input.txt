@@ -1,5 +1,4 @@
 Keyword     score
-wiki		30000
 biography	3
 personal	1.5
 profile		3
