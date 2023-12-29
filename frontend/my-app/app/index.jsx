@@ -12,25 +12,27 @@ export default function Home() {
             flex:1
         }}>
             <Tabs.Screen options={{
-                title: "記憶傳承人",
+                title: "NBAFinder",
             }}/>
             <ImageBackground
-                source={require("../assets/pic/who_am_i.png")}
-                resizeMode="cover"
                 style={{
                     width: '100%',
                     height: '100%',
                     flex: 1,
-                    justifyContent: "center",
+                    justifyContent: "flex-start",
+                    alignItems: 'center',
+                    backgroundColor: '#001F3F',
                 }}
             >
+                <View>
+                    <Text >Welcome to NBAFinder ! Search for NBA players...</Text>
+                </View>
                 <View style={{
                     display: 'flex',
-                    flexDirection: 'row',
+                    flexDirection: 'column',
                     justifyContent: 'center',
-                    alignItems: 'center',
-                    textAlign: 'center',
-                    gap: 60,
+                    textAlign: 'flex-start',
+                    paddingVertical: 20,
                 }}>
                     <Link href={{
                         pathname: '/Auth',
@@ -91,7 +93,7 @@ export default function Home() {
     )
 }
 
-const styles = StyleSheet.create({
+const styes = StyleSheet.create({
     customFontText: {
         display: 'flex',
         justifyContent: 'center',
