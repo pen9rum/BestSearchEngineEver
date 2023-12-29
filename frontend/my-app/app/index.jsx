@@ -1,20 +1,21 @@
-import {Text} from "react-native-paper";
+import {Text, TextInput} from "react-native-paper";
 import {View, ImageBackground} from "react-native";
 import {Link, Tabs} from "expo-router";
-import {Card, Icon, MD3Colors} from "react-native-paper";
+import {Card, Icon, MD3Colors, TextInput} from "react-native-paper";
 import {Image, StyleSheet} from 'react-native';
 import {useState} from "react";
 
 export default function Home() {
     const [type, setType] = useState(0);
     return (
-        <View style={{
+        <ImageBackground 
+            style={{
             flex:1
         }}>
             <Tabs.Screen options={{
                 title: "NBAFinder",
             }}/>
-            <ImageBackground
+            <View
                 style={{
                     width: '100%',
                     height: '100%',
@@ -24,9 +25,7 @@ export default function Home() {
                     backgroundColor: '#001F3F',
                 }}
             >
-                <View>
-                    <Text style={styles.headerText}>Welcome to NBAFinder !{'\n'}Search for NBA players...</Text>
-                </View>
+                
                 <View style={{
                     display: 'flex',
                     flexDirection: 'column',
@@ -34,7 +33,26 @@ export default function Home() {
                     textAlign: 'flex-start',
                     paddingVertical: 20,
                 }}>
-                    
+                    <View>
+                        <Text style={styles.headerText}>Welcome to NBAFinder !{'\n'}Search for NBA players...</Text>
+                    </View>
+
+                    {/* 加一個搜尋欄 
+                    <View style={styles.searchContainer}>
+                        <View style={styles.searchWrapper}
+                            <TextInput
+                                style={styles.searchInput}
+                                value=""
+                                onChange={() => {}}
+                                placeholder="Search for players here"
+                        />
+                        
+                    </View>*/}
+                </View>
+
+
+                    {/* 新聞欄 */}
+
 
                     <Link href={{
                         pathname: '/Auth',
@@ -59,10 +77,10 @@ export default function Home() {
                             </Card.Content>
                         </Card>
                     </Link>
-                </View>
-            </ImageBackground>
+            </View>
+            
 
-        </View>
+        </ImageBackground>
 
     )
 }
@@ -94,5 +112,21 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: "center",
         resizeMode: "cover",
-    }
+    },
+    searchContainer: {
+        justifyContent: "center",
+        alignItems: "center",
+        flexDirection: "row",
+        marginTop: SIZES.large,
+        height: 50,
+      },
+      searchWrapper: {
+        flex: 1,
+        backgroundColor: COLORS.white,
+        marginRight: SIZES.small,
+        justifyContent: "center",
+        alignItems: "center",
+        borderRadius: SIZES.medium,
+        height: "100%",
+      },
 })
