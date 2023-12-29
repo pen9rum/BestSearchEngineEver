@@ -25,7 +25,7 @@ export default function Home() {
                 }}
             >
                 <View>
-                    <Text >Welcome to NBAFinder ! Search for NBA players...</Text>
+                    <Text style={styles.headerText}>Welcome to NBAFinder !{'\n'}Search for NBA players...</Text>
                 </View>
                 <View style={{
                     display: 'flex',
@@ -34,33 +34,7 @@ export default function Home() {
                     textAlign: 'flex-start',
                     paddingVertical: 20,
                 }}>
-                    <Link href={{
-                        pathname: '/Auth',
-                        query: {type: 0}
-                    }}>
-                        <Card
-                            style={{
-                                display: 'flex',
-                                marginTop: 100,
-                            }}
-                        >
-                            <Text style={styles.customFontText}>我是患者</Text>
-                            <Card.Content
-                                style={{
-                                    display: 'flex',
-                                    justifyContent: 'center',
-                                    alignItems: 'center',
-                                    width: '100%',
-                                    height: '100%',
-                                }}
-                            >
-                                <Image
-                                    source={require("../assets/icons/hackathon_icon/patient.png")}
-                                    style={{width: 50, height: 50}}
-                                />
-                            </Card.Content>
-                        </Card>
-                    </Link>
+                    
 
                     <Link href={{
                         pathname: '/Auth',
@@ -93,7 +67,20 @@ export default function Home() {
     )
 }
 
-const styes = StyleSheet.create({
+const styles = StyleSheet.create({
+    headerText: {
+        fontSize: 24,
+        fontWeight: 'bold',
+        display: 'flex',
+        marginTop: 100,
+    },
+    searchInput: {
+        height: 40,
+        borderColor: 'gray',
+        borderWidth: 1,
+        marginTop: 10,
+        padding: 8,
+      },
     customFontText: {
         display: 'flex',
         justifyContent: 'center',
