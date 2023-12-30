@@ -7,23 +7,20 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 public class KeywordList
 {
-	 private LinkedList<Keyword> lst;
-	    private ArrayList<ResultItemWithScore> resultItemsWithScores;
-	    private String NBAstatUrl;
-	    private String userInput;
-	    public KeywordList(String userInput) {
-	        this.lst = new LinkedList<Keyword>();
-	        this.resultItemsWithScores = new ArrayList<>();
-	        this.userInput = userInput;
-	    }
+	private LinkedList<Keyword> lst;
+	private ArrayList<ResultItemWithScore> resultItemsWithScores;
+	private String NBAstatUrl;
+	
+	public KeywordList()
+	{
+		this.lst = new LinkedList<Keyword>();
+		this.resultItemsWithScores = new ArrayList<>();
+	}
 
 	public void add(Keyword keyword) {
 			lst.add(keyword);
 	}
-	  public String getUserInput() {
-	        return userInput;
-	    }
-
+	
 	public void addResultItemWithScore(ResultItem resultItem, float score) {
         ResultItemWithScore resultItemWithScore = new ResultItemWithScore(resultItem, score);
         resultItemsWithScores.add(resultItemWithScore);
@@ -67,9 +64,7 @@ return totalScore;
 	public void sortAndOutput() {
         // Sort the list by score in descending order
         sort(0, resultItemsWithScores.size() - 1);
-        System.out.println("Score: uncalculated"  + " Title: WIKI" +" " +getUserInput()+
-                ", URL: " + "https://en.wikipedia.org/wiki/"+ getUserInput()
-                );
+
         // Output title, URL, and score for each keyword
         for (ResultItemWithScore resultItem : resultItemsWithScores) {
             System.out.println("Score: " + resultItem.getScore() + ", Title: " + resultItem.getResultItem().getTitle() +
@@ -150,6 +145,5 @@ return totalScore;
 		System.out.println(sb.toString());
 	}
 }
-
 
 

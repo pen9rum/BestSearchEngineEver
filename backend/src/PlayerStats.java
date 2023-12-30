@@ -13,20 +13,29 @@ public class PlayerStats {
 	public PlayerStats(String playerUrl) {
 		this.playerUrl = playerUrl;
 	}
-		 
+		
 	public void getStats() throws InterruptedException{
+		
+	//playerUrl = "https://www.nba.com/player/201939" ; // 201939是Stephen Curry的球员ID，你可以替换成其他球员的ID
+ 	//String playerUrl = "https://www.nba.com/player/1630173/precious-achiuwa";
      try {
          Connection connection = Jsoup.connect(playerUrl)
                  .userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36");
-         int delayMillis = (int) (Math.random() * 50) + 100; // Random delay between 1 to 5 seconds
-         Thread.sleep(DynamicDelayCrawler.getCurrentDelay());
+
+         // Simulate a delay between requests to appear more like a human
+         int delayMillis = (int) (Math.random() * 5000) + 1000; // Random delay between 1 to 5 seconds
+         Thread.sleep(delayMillis);
+
+         // Execute the request using the connection object
          Document document = connection.get();
 
+         // 提取球员的得分
          String point = document.select("p.PlayerSummary_playerStatValue___EDg_").text();
-         Element imageElement = document.selectFirst("img.PlayerImage_image__wH_YX.PlayerSummary_playerImage__sysif");
-         String imageUrl = imageElement.attr("src");
+         System.out.println("球员數據: \n" + "PPG " + "RPG " + "APG " + "PIE " + "\n" + point);
 
-         System.out.println("球员數據: \n" + "PPG " + "RPG " + "APG " + "PIE " + "\n" + point + "\n球員照片:\n" + imageUrl);
+         // 提取球员的统计数据
+         
+
      } catch (IOException e) {
          e.printStackTrace();
      }
