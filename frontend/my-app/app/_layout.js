@@ -4,6 +4,8 @@ import {api} from "./utils";
 import {Alert} from "react-native";
 import {createContext, useEffect, useState} from "react";
 import {PaperProvider} from "react-native-paper";
+
+
 export const UserContext = createContext({
     user: null,
 })
