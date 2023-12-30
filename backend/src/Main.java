@@ -1,5 +1,6 @@
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.io.File;
 import java.security.KeyManagementException;
@@ -8,10 +9,18 @@ import java.security.NoSuchAlgorithmException;
 public class Main {
     public static void main(String[] args) throws KeyManagementException, NoSuchAlgorithmException {
         try {
-            Scanner scn = new Scanner(System.in);
-         
-            String queryInput = scn.next();
-            
+            DatabasePlayerSearch DBsearch = new DatabasePlayerSearch();
+        	Scanner scn = new Scanner(System.in);
+        	System.out.print("Enter the name to search: ");
+        	String inputName = scn.nextLine();
+        	List<String> matchingNames = DBsearch.searchPlayerByName(inputName);
+        	System.out.println("Matching Names:");
+    		for (String fullName : matchingNames) {
+    			System.out.println(fullName);
+    		}
+        	System.out.print("Enter the name among them and press Enter : ");
+            String queryInput = scn.nextLine();
+        	System.out.print("Enter the searchValue: ");
             int searchValue = scn.nextInt();
             
             // Create a GoogleQuery instance with user input

@@ -13,17 +13,20 @@ public class PlayerStats {
 	public PlayerStats(String playerUrl) {
 		this.playerUrl = playerUrl;
 	}
-		
+		 
 	public void getStats() throws InterruptedException{
      try {
          Connection connection = Jsoup.connect(playerUrl)
                  .userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36");
-         int delayMillis = (int) (Math.random() * 5000) + 1000; // Random delay between 1 to 5 seconds
+         int delayMillis = (int) (Math.random() * 50) + 100; // Random delay between 1 to 5 seconds
          Thread.sleep(DynamicDelayCrawler.getCurrentDelay());
          Document document = connection.get();
 
          String point = document.select("p.PlayerSummary_playerStatValue___EDg_").text();
-         System.out.println("球员數據: \n" + "PPG " + "RPG " + "APG " + "PIE " + "\n" + point);
+         Element imageElement = document.selectFirst("img.PlayerImage_image__wH_YX.PlayerSummary_playerImage__sysif");
+         String imageUrl = imageElement.attr("src");
+
+         System.out.println("球员數據: \n" + "PPG " + "RPG " + "APG " + "PIE " + "\n" + point + "\n球員照片:\n" + imageUrl);
      } catch (IOException e) {
          e.printStackTrace();
      }
