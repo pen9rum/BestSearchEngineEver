@@ -38,11 +38,11 @@ export default function Home() {
                     <View style={styles.headArea}>
                         <Image
                             source={require('../assets/icons/close.png')}
-                            style={{ width: 20, height: 20, marginRight: '10%', tintColor: 'white' }}
+                            style={{ width: 17, height: 17, marginRight: '10%', tintColor: 'white' }}
                         />
                         <Image
                             source={require('../assets/icons/menu.png')}
-                            style={{ width: 30, height: 20, marginLeft: '10%', tintColor: 'white' }}
+                            style={{ width: 25, height: 20, marginLeft: '10%', tintColor: 'white' }}
                         />
                     </View>
                 </View>
@@ -75,38 +75,38 @@ export default function Home() {
 
                 {/* 新聞欄 */}
                 <View style={styles.newsContainer}>
-                    <Text >Latest News</Text>
+                    <Text style={{fontWeight: 'bold'}}>Today's Focus</Text>
                     <View style={styles.newsWrapper}>
-                        <View style={{ width: 80, height: 80 }}>
+                        <View style={{ width: 100, height: 80 }}>
                             <Image
-                                source={require('../assets/icons/user.png')}
-                                style={{ width: 70, height: 70, margin: 5}}
+                                source={require('../assets/icons/news.jpg')}
+                                style={{ width: 90, height: 70, margin: 5}}
                             />
                         </View>
-                        <View style={{ width: 200, height: 80, margin: 5}}>
-                            <Text style={{ fontSize: 18 }}>qwertyuiopasdfghjklzxcvbnm</Text>
+                        <View style={{ width: 180, height: 80, marginRight: 5, marginTop: 5}}>
+                            <Text style={{ fontSize: 16 }}>qwertyuiopasdfghjklzxcvbnm</Text>
                         </View>
                     </View>
                     <View style={styles.newsWrapper}>
-                        <View style={{ width: 80, height: 80 }}>
+                        <View style={{ width: 100, height: 80 }}>
                             <Image
-                                source={require('../assets/icons/user.png')}
-                                style={{ width: 70, height: 70, margin: 5}}
+                                source={require('../assets/icons/news.jpg')}
+                                style={{ width: 90, height: 70, margin: 5}}
                             />
                         </View>
-                        <View style={{ width: 200, height: 80, margin: 5}}>
-                            <Text style={{ fontSize: 18 }}>qwertyuiopasdfghjklzxcvbnm</Text>
+                        <View style={{ width: 180, height: 80, marginRight: 5, marginTop: 5}}>
+                            <Text style={{ fontSize: 16 }}>qwertyuiopasdfghjklzxcvbnm</Text>
                         </View>
                     </View>
                     <View style={styles.newsWrapper}>
-                        <View style={{ width: 80, height: 80 }}>
+                        <View style={{ width: 100, height: 80 }}>
                             <Image
-                                source={require('../assets/icons/user.png')}
-                                style={{ width: 70, height: 70, margin: 5}}
+                                source={require('../assets/icons/news.jpg')}
+                                style={{ width: 90, height: 70, margin: 5}}
                             />
                         </View>
-                        <View style={{ width: 200, height: 80, margin: 5}}>
-                            <Text style={{ fontSize: 18 }}>qwertyuiopasdfghjklzxcvbnm</Text>
+                        <View style={{ width: 180, height: 80, marginRight: 5, marginTop: 5}}>
+                            <Text style={{ fontSize: 16 }}>qwertyuiopasdfghjklzxcvbnm</Text>
                         </View>
                     </View>
                 </View>

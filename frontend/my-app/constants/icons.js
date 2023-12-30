@@ -10,6 +10,7 @@ import meal from "../assets/icons/hackathon_icon/meal.png";
 import medicine from "../assets/icons/hackathon_icon/medicine.png";
 import close from "../assets/icons/close.png";
 import search from "../assets/icons/search.png";
+import news from "../assets/icons/news.jpg";
 
 
 export default {
@@ -24,5 +25,6 @@ export default {
   f,
   m,
   close,
-  search
+  search,
+  news
 };
