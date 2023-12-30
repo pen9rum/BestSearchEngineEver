@@ -8,6 +8,8 @@ import m from "../assets/icons/hackathon_icon/m.png";
 import o from "../assets/icons/hackathon_icon/o.png";
 import meal from "../assets/icons/hackathon_icon/meal.png";
 import medicine from "../assets/icons/hackathon_icon/medicine.png";
+import close from "../assets/icons/close.png";
+import search from "../assets/icons/search.png";
 
 
 export default {
@@ -20,5 +22,7 @@ export default {
   wakeup,
   o,
   f,
-  m
+  m,
+  close,
+  search
 };

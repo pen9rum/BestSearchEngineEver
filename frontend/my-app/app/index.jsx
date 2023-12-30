@@ -1,7 +1,7 @@
-import { Text, TextInput} from "react-native-paper";
+import { Text, TextInput } from "react-native-paper";
 import { View, ImageBackground } from "react-native";
 import { Link, Tabs } from "expo-router";
-import { Card, Icon, MD3Colors} from "react-native-paper";
+import { Card, Icon, MD3Colors } from "react-native-paper";
 import { Image, StyleSheet } from 'react-native';
 import { useState } from "react";
 
@@ -18,13 +18,25 @@ export default function Home() {
                 title: "NBAFinder",
             }} />
             <View style={{
-                    width: '100%',
-                    height: '100%',
-                    flex: 1,
-                    justifyContent: "flex-start",
-                    alignItems: 'center',
-                    backgroundColor: '#001F3F',
+                width: '100%',
+                height: '100%',
+                flex: 1,
+                justifyContent: "flex-start",
+                alignItems: 'center',
+                backgroundColor: '#001F3F',
             }}>
+                <View style={styles.container}>
+                    <View style={styles.headArea}>
+                        <Image
+                            source={require('../assets/icons/close.png')}
+                            style={{ width: 20, height: 30, marginRight: '20%', tintColor: 'white' }}
+                        />
+                        <Image
+                            source={require('../assets/icons/menu.png')}
+                            style={{ width: 30, height: 30, marginLeft: '20%', tintColor: 'white' }}
+                        />
+                    </View>
+                </View>
 
                 <View style={{
                     display: 'flex',
@@ -40,20 +52,34 @@ export default function Home() {
 
                     {/* 搜尋欄 */}
                     <View style={styles.searchContainer}>
-                        <View style={styles.searchWrapper}>
-                            <TextInput onChangeText={setName} placeholder={"Search for players here"} value={name} textContentType={'name'}/>
-                        </View>
-                    </View> 
-                </View>
+                        <Link href={{
+                            pathname: '/Auth',
+                            query: { type: 1 }
+                        }}>
+                            <TextInput
+                                style={styles.searchWrapper}
+                                onChangeText={setName}
+                                placeholder={"Search for players"}
+                                placeholderTextColor={"black"}
+                                value={name}
+                                textContentType={'name'}
+                            />
 
+                        </Link>
+                        <Image
+                            source={require('../assets/icons/search.png')}
+                            style={{ width: 20, height: 30 }}
+                    />
+                    </View>
+                </View>
 
                 {/* 新聞欄 */}
                 <View style={styles.container}>
 
                 </View>
 
-
-                {/*<Link href={{
+                {/*
+                <Link href={{
                     pathname: '/Auth',
                     query: { type: 1 }
                 }}>
@@ -78,13 +104,23 @@ export default function Home() {
                 </Link>*/}
             </View>
 
-
         </ImageBackground>
 
     )
 }
 
 const styles = StyleSheet.create({
+    headContainer: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'flex-start',
+    },
+    headArea: {
+        paddingVertical: 10,
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+    },
     container: {
         width: "100%",
     },
@@ -92,7 +128,7 @@ const styles = StyleSheet.create({
         fontSize: 24,
         fontWeight: 'bold',
         display: 'flex',
-        marginTop: 100,
+        marginTop: 0,
     },
     searchInput: {
         height: 40,
@@ -119,16 +155,19 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         flexDirection: "row",
-        marginTop: SIZES.large,
-        height: 50,
+        marginTop: 20,
+        height: 40,
+        backgroundColor: "rgb(215 215 215)",
+        borderRadius: 16
     },
     searchWrapper: {
         flex: 1,
-        backgroundColor: COLORS.white,
-        marginRight: SIZES.small,
+        backgroundColor: "rgb(215 215 215)",
+        marginRight: "20%",
         justifyContent: "center",
         alignItems: "center",
-        borderRadius: SIZES.medium,
+        borderRadius: 16,
         height: "100%",
+        fontSize: 14
     },
 })
