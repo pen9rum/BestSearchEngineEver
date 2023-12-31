@@ -7,7 +7,6 @@ import { useState } from "react";
 
 export default function Home() {
     const [type, setType] = useState(0);
-    const [name, setName] = useState('')
 
     return (
         <ImageBackground
@@ -25,7 +24,7 @@ export default function Home() {
                 alignItems: 'center',
                 backgroundColor: '#001F3F',
             }}>
-                
+
 
                 <View style={{
                     display: 'flex',
@@ -35,55 +34,64 @@ export default function Home() {
                     paddingVertical: 10,
                 }}>
                     <View style={styles.container}>
-                    <View style={styles.headArea}>
-                        <Image
-                            source={require('../assets/icons/close.png')}
-                            style={{ width: 17, height: 17, marginRight: '10%', tintColor: 'white' }}
-                        />
-                        <Image
-                            source={require('../assets/icons/menu.png')}
-                            style={{ width: 25, height: 20, marginLeft: '10%', tintColor: 'white' }}
-                        />
+                        <View style={styles.headArea}>
+                            <Image
+                                source={require('../assets/icons/close.png')}
+                                style={{ width: 17, height: 17, marginRight: '10%', tintColor: '#001F3F' }}
+                            />
+                            <Image
+                                source={require('../assets/icons/menu.png')}
+                                style={{ width: 25, height: 20, marginLeft: '10%', tintColor: '#001F3F' }}
+                            />
+                        </View>
                     </View>
-                </View>
                     <View style={styles.container}>
-                        <Text style={styles.headerText}>Welcome to NBAFinder !{'\n'}Search for NBA players...</Text>
+                        <Text style={styles.headerText}>Welcome to NBAFinder !{'\n'}Let's start your NBA journey.</Text>
                     </View>
 
                     {/* 搜尋欄 */}
                     <View style={styles.searchContainer}>
                         <Link href={{
-                            pathname: '/Auth',
+                            pathname: '/NBA/search',
                             query: { type: 1 }
                         }}>
-                            <TextInput
-                                style={styles.searchWrapper}
-                                onChangeText={setName}
-                                placeholder={"Let's search for players"}
-                                placeholderTextColor={"black"}
-                                value={name}
-                                textContentType={'name'}
-                            />
-
+                            <View style={{
+                                flexDirection: 'row',
+                                alignItems: 'center',
+                                justifyContent: "space-between",
+                                width: '100%'
+                            }}>
+                                <TextInput
+                                    style={{
+                                        flex: 1,
+                                        backgroundColor: "rgb(215 215 215)",
+                                        height: "100%",
+                                        fontSize: 14
+                                    }}
+                                    placeholder={"Let's search for players"}
+                                    placeholderTextColor={"black"}
+                                    
+                                />
+                                <Image
+                                    source={require('../assets/icons/search.png')}
+                                    style={{ width: 25, height: 25 }}
+                                />
+                            </View>
                         </Link>
-                        <Image
-                            source={require('../assets/icons/search.png')}
-                            style={{ width: 25, height: 25 }}
-                        />
                     </View>
                 </View>
 
                 {/* 新聞欄 */}
                 <View style={styles.newsContainer}>
-                    <Text style={{fontWeight: 'bold'}}>Today's Focus</Text>
+                    <Text style={{ fontWeight: 'bold' }}>Today's Focus</Text>
                     <View style={styles.newsWrapper}>
                         <View style={{ width: 100, height: 80 }}>
                             <Image
                                 source={require('../assets/icons/news.jpg')}
-                                style={{ width: 90, height: 70, margin: 5}}
+                                style={{ width: 90, height: 70, margin: 5 }}
                             />
                         </View>
-                        <View style={{ width: 180, height: 80, marginRight: 5, marginTop: 5}}>
+                        <View style={{ width: 180, height: 80, marginRight: 5, marginTop: 5 }}>
                             <Text style={{ fontSize: 16 }}>qwertyuiopasdfghjklzxcvbnm</Text>
                         </View>
                     </View>
@@ -91,10 +99,10 @@ export default function Home() {
                         <View style={{ width: 100, height: 80 }}>
                             <Image
                                 source={require('../assets/icons/news.jpg')}
-                                style={{ width: 90, height: 70, margin: 5}}
+                                style={{ width: 90, height: 70, margin: 5 }}
                             />
                         </View>
-                        <View style={{ width: 180, height: 80, marginRight: 5, marginTop: 5}}>
+                        <View style={{ width: 180, height: 80, marginRight: 5, marginTop: 5 }}>
                             <Text style={{ fontSize: 16 }}>qwertyuiopasdfghjklzxcvbnm</Text>
                         </View>
                     </View>
@@ -102,10 +110,10 @@ export default function Home() {
                         <View style={{ width: 100, height: 80 }}>
                             <Image
                                 source={require('../assets/icons/news.jpg')}
-                                style={{ width: 90, height: 70, margin: 5}}
+                                style={{ width: 90, height: 70, margin: 5 }}
                             />
                         </View>
-                        <View style={{ width: 180, height: 80, marginRight: 5, marginTop: 5}}>
+                        <View style={{ width: 180, height: 80, marginRight: 5, marginTop: 5 }}>
                             <Text style={{ fontSize: 16 }}>qwertyuiopasdfghjklzxcvbnm</Text>
                         </View>
                     </View>
@@ -186,23 +194,12 @@ const styles = StyleSheet.create({
     },
     searchContainer: {
         justifyContent: "space-around",
-        alignItems: "center",
         flexDirection: "row",
         marginTop: 15,
         marginBottom: 5,
         height: 30,
         backgroundColor: "rgb(215 215 215)",
         borderRadius: 16
-    },
-    searchWrapper: {
-        flex: 1,
-        backgroundColor: "rgb(215 215 215)",
-        marginRight: "20%",
-        justifyContent: "center",
-        alignItems: "center",
-        borderRadius: 16,
-        height: "100%",
-        fontSize: 14
     },
     newsContainer: {
         justifyContent: "flex-start",
