@@ -28,6 +28,8 @@ export default function Home() {
                     justifyContent: 'center',
                     textAlign: 'flex-start',
                     paddingVertical: 10,
+                    alignItems: "center",
+                    width: 330
                 }}>
                     <View style={styles.container}>
                         <View style={styles.headArea}>
@@ -57,7 +59,7 @@ export default function Home() {
                             flexDirection: 'row',
                             alignItems: 'center',
                             justifyContent: "space-between",
-                            width: '100%'
+                            width: 280,
                         }}>
                             <TextInput
                                 style={{
@@ -154,7 +156,8 @@ const styles = StyleSheet.create({
         marginBottom: 5,
         height: 30,
         backgroundColor: "rgb(215 215 215)",
-        borderRadius: 16
+        borderRadius: 16,
+        width: 280
     },
     playerContainer: {
         justifyContent: "flex-start",
