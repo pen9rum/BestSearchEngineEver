@@ -82,8 +82,21 @@ export default function Home() {
                 </View>
 
                 {/* 球員選單 */}
+                <View style={styles.playerContainer}>
+                    <View style={styles.playerWrapper}>
+                        <View style={{ width: 100, height: 80 }}>
+                            <Image
+                                source={require('../../assets/icons/news.jpg')}
+                                style={{ width: 90, height: 70, margin: 5 }}
+                            />
+                        </View>
+                        <View style={{ width: 180, height: 80, marginRight: 5, marginTop: 5 }}>
+                            <Text style={{ fontSize: 16 }}>qwertyuiopasdfghjklzxcvbnm</Text>
+                        </View>
+                    </View>
+                    
+                </View>
 
-                                
 
             </View>
 
@@ -143,12 +156,12 @@ const styles = StyleSheet.create({
         backgroundColor: "rgb(215 215 215)",
         borderRadius: 16
     },
-    newsContainer: {
+    playerContainer: {
         justifyContent: "flex-start",
         alignItems: "center",
         flexDirection: "column",
     },
-    newsWrapper: {
+    playerWrapper: {
         flex: 1,
         justifyContent: "space-around",
         alignItems: "center",
