@@ -74,9 +74,9 @@ public class KeywordCounter {
 
 	    private int[] computeLPSArray(String pattern) {
 	        int[] lps = new int[pattern.length()];
-	        int length = 0; // length of the previous longest prefix suffix
+	        int length = 0; 
 	        int i = 1;
-	        lps[0] = 0; // lps[0] is always 0
+	        lps[0] = 0; 
 
 	        while (i < pattern.length()) {
 	            if (pattern.charAt(i) == pattern.charAt(length)) {

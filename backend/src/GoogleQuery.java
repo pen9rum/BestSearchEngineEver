@@ -38,9 +38,7 @@ public class GoogleQuery
 	public String content;	
 	public GoogleQuery(String searchKeyword,int search_value)
 	{
-		this.searchKeyword = searchKeyword;
-		
-		   
+		this.searchKeyword = searchKeyword;	   
 		try 
 		{		
 			String encodeKeyword=java.net.URLEncoder.encode(searchKeyword,"utf-8");
@@ -51,16 +49,12 @@ public class GoogleQuery
 		{
 			System.out.println(e.getMessage());
 		}
-	}
-	
+	}	
 	private String fetchContent() throws IOException
-	{
-		
+	{	
 		String retVal = "";
-
 		URL u = new URL(url);
 		URLConnection conn = u.openConnection();
-
 		conn.setRequestProperty("User-agent", "Chrome/107.0.5304.107");
         try {
         	Thread.sleep(DynamicDelayCrawler.getCurrentDelay());

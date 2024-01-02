@@ -69,7 +69,6 @@ return totalScore;
 }
 	
 	public void sortAndOutput() {
-        // Sort the list by score in descending order
         sort(0, resultItemsWithScores.size() - 1);
         topResults.add(new ResultItemWithScore(
                 new ResultItem("WIKI " + getUserInput(), "https://en.wikipedia.org/wiki/" + getUserInput()), 
