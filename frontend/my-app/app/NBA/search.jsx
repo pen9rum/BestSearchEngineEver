@@ -27,7 +27,6 @@ export default function Home() {
                     flexDirection: 'column',
                     justifyContent: 'center',
                     textAlign: 'flex-start',
-                    paddingVertical: 10,
                     alignItems: "center",
                     width: 330
                 }}>
