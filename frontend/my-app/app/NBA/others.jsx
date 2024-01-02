@@ -64,8 +64,29 @@ export default function Home() {
 
                 </View>
                 {/* 文字欄 */}
-                <View>
+                <View style={{
+                    marginVertical: 10,
+                    padding: 5,
+                    width: 320,
+                    backgroundColor: 'rgba(0, 31, 63, 0.5)',
+                    borderRadius: 12
+                }}>
+                    <View style={{flexDirection: 'column'}}>
+                        <Text style={{
+                            fontSize: 18,
+                            fontWeight: 'bold',
+                            marginHorizontal: 5
+                        }}>Merchandise</Text>
+                        <View style={{flexDirection: 'row'}}>
+                            <Image
+                                source={require('../../assets/icons/link.png')}
+                                style={{ width: 17, height: 17, marginLeft: '10%', tintColor: 'white' }}
+                            />
+                            <Text style={{width: 250}}>
+                                aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</Text>
+                        </View>
 
+                    </View>
                 </View>
             </View>
 
@@ -104,5 +125,8 @@ const styles = StyleSheet.create({
         padding: 12,
         fontSize: 24,
         fontFamily: 'DM Sans-Regular',
+    },
+    linkWrapper: {
+
     }
 })

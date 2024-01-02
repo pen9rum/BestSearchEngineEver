@@ -10,14 +10,14 @@ export default function Home() {
 
     return (
         <ImageBackground
-        source={require("../../assets/pic/background.jpg")}
-        resizeMode="cover"
-        style={{
-            width: '100%',
-            height: '100%',
-            justifyContent: "center",
-            flex: 1,
-        }}>
+            source={require("../../assets/pic/background.jpg")}
+            resizeMode="cover"
+            style={{
+                width: '100%',
+                height: '100%',
+                justifyContent: "center",
+                flex: 1,
+            }}>
 
             <View style={{
                 width: '100%',
@@ -64,7 +64,26 @@ export default function Home() {
 
                 </View>
                 {/* 媒體欄 */}
-                
+                <View style={{
+                    width: 300,
+                    justifyContent: "flex-start",
+                    flexDirection: 'row',
+                    flexWrap: 'wrap'
+                }}>
+                    <Image
+                        source={require('../../assets/icons/meal.png')}
+                        style={{ width: 50, height: 50, marginTop: 20, marginHorizontal: 50, tintColor: 'white' }}
+                    />
+                    <Image
+                        source={require('../../assets/icons/meal.png')}
+                        style={{ width: 50, height: 50, marginTop: 20, marginHorizontal: 50, tintColor: 'white' }}
+                    />
+                    <Image
+                        source={require('../../assets/icons/meal.png')}
+                        style={{ width: 50, height: 50, marginTop: 20, marginHorizontal: 50, tintColor: 'white' }}
+                    />
+                    
+                </View>
 
             </View>
 
