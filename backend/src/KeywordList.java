@@ -7,16 +7,19 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 public class KeywordList
 {
+	private List<ResultItemWithScore> topResults = new ArrayList<>();
+	private List<ResultItemWithScore> otherResults = new ArrayList<>();
 	 private LinkedList<Keyword> lst;
 	    private ArrayList<ResultItemWithScore> resultItemsWithScores;
 	    private String NBAstatUrl;
 	    private String userInput;
+	    int count=0;
 	    public KeywordList(String userInput) {
 	        this.lst = new LinkedList<Keyword>();
 	        this.resultItemsWithScores = new ArrayList<>();
 	        this.userInput = userInput;
 	    }
-
+	    
 	public void add(Keyword keyword) {
 			lst.add(keyword);
 	}
@@ -64,22 +67,61 @@ for (Future<Float> future : futures) {
 executor.shutdown();
 return totalScore;
 }
+	
 	public void sortAndOutput() {
         // Sort the list by score in descending order
         sort(0, resultItemsWithScores.size() - 1);
-        System.out.println("Score: uncalculated"  + " Title: WIKI" +" " +getUserInput()+
-                ", URL: " + "https://en.wikipedia.org/wiki/"+ getUserInput()
-                );
-        // Output title, URL, and score for each keyword
+        topResults.add(new ResultItemWithScore(
+                new ResultItem("WIKI " + getUserInput(), "https://en.wikipedia.org/wiki/" + getUserInput()), 
+                30000 
+            ));
+        int count = 0;
         for (ResultItemWithScore resultItem : resultItemsWithScores) {
-            System.out.println("Score: " + resultItem.getScore() + ", Title: " + resultItem.getResultItem().getTitle() +
-                    ", URL: " + resultItem.getResultItem().getUrl()
-                    );
-            if(resultItem.getResultItem().getUrl().contains("nba.com/player/")) {
-            	NBAstatUrl = resultItem.getResultItem().getUrl();
-            	
+            if (resultItem.getScore() > 0) {
+                if (count < 10) {
+                    topResults.add(resultItem);
+                } else {
+                    otherResults.add(resultItem);
+                }
+                count++;
+            } else {
+                break;
             }
         }
+        if(topResults.size()!=0)
+        {
+        	System.out.println("Results Below are player info:"
+                    );
+        	for (ResultItemWithScore item : topResults) {
+        		
+                System.out.println("Score: " + (item.getScore() >= 0 ? item.getScore() : "uncalculated") +
+                        " Title: " + item.getResultItem().getTitle() +
+                        ", URL: " + item.getResultItem().getUrl()
+                );
+            }
+        }
+        else
+        {
+        	System.out.println("No results found"
+            );
+        }
+        if(otherResults.size()!=0)
+        {
+        	System.out.println("Results Below are orher stats:"
+                    );
+        	for (ResultItemWithScore item : otherResults) {
+                System.out.println("Score: " + (item.getScore() >= 0 ? item.getScore() : "uncalculated") +
+                        " Title: " + item.getResultItem().getTitle() +
+                        ", URL: " + item.getResultItem().getUrl()
+                );
+            }
+        }
+        else
+        {
+        	System.out.println("No other results found"
+            );
+        }
+        
     }
 
 	public String getNBAstatUrl() {

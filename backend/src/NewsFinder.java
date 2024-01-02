@@ -1,3 +1,4 @@
+
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -7,7 +8,7 @@ import java.io.IOException;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ExecutorService;
 
-public class AroundTheNBA {
+public class NewsFinder {
     
     public void printAroundTheNBA() {
         ExecutorService executor = Executors.newFixedThreadPool(10); // Create a thread pool with 10 threads

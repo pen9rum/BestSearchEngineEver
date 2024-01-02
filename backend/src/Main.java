@@ -15,11 +15,24 @@ public class Main {
         	Scanner scn = new Scanner(System.in);
         	System.out.print("Enter the name to search: ");
         	String inputName = scn.nextLine();
+        	if(inputName.length()>25)
+        	{
+        		System.out.print("Not allowed insert,Enter the name to search:");
+        		inputName = scn.nextLine();
+        	}
         	List<String> matchingNames = DBsearch.searchPlayerByName(inputName);
-        	System.out.println("Matching Names:");
-    		for (String fullName : matchingNames) {
-    			System.out.println(fullName);
-    		}
+        	while(matchingNames.size()==0)
+        	{
+        		System.out.print("Enter the name to search: ");
+        		inputName = scn.nextLine();
+        		matchingNames = DBsearch.searchPlayerByName(inputName);
+        	}
+        	
+        		System.out.println("Matching Names:");
+        		for (String fullName : matchingNames) {
+        			System.out.println(fullName);
+        		}
+        	
         	System.out.print("Enter the name among them and press Enter : ");
             String queryInput = scn.nextLine();
         	System.out.print("Enter the searchValue: ");
