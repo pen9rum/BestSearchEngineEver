@@ -7,6 +7,10 @@ import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 
 public class Main {
+	 public static boolean isEnglishOrPunctuation(String text) {
+	        return text.matches("^[a-zA-Z\\s.,!?()-_]+$");
+	    }
+
     public static void main(String[] args) throws KeyManagementException, NoSuchAlgorithmException {
         try {
         	AroundTheNBA aroundTheNBA = new AroundTheNBA();
@@ -14,11 +18,19 @@ public class Main {
             DatabasePlayerSearch DBsearch = new DatabasePlayerSearch();
         	Scanner scn = new Scanner(System.in);
         	System.out.print("Enter the name to search: ");
-        	String inputName = scn.nextLine();
-        	if(inputName.length()>25)
-        	{
-        		System.out.print("Not allowed insert,Enter the name to search:");
-        		inputName = scn.nextLine();
+        	String inputName;
+        	while (true) {
+        	    System.out.print("Enter the name to search: ");
+        	    inputName = scn.nextLine();
+        	    if (inputName.length() > 25) {
+        	        System.out.println("Not allowed insert, name too long.");
+        	        continue; 
+        	    }
+        	    if (!isEnglishOrPunctuation(inputName)) {
+        	        System.out.println("Only English allowed.");
+        	        continue; 
+        	    }
+        	    break;
         	}
         	List<String> matchingNames = DBsearch.searchPlayerByName(inputName);
         	while(matchingNames.size()==0)
@@ -26,39 +38,28 @@ public class Main {
         		System.out.print("Enter the name to search: ");
         		inputName = scn.nextLine();
         		matchingNames = DBsearch.searchPlayerByName(inputName);
-        	}
-        	
+        	}      	
         		System.out.println("Matching Names:");
         		for (String fullName : matchingNames) {
         			System.out.println(fullName);
-        		}
-        	
+        		}      	
         	System.out.print("Enter the name among them and press Enter : ");
             String queryInput = scn.nextLine();
         	System.out.print("Enter the searchValue: ");
             int searchValue = scn.nextInt();
-            
-            // Create a GoogleQuery instance with user input
             GoogleQuery googleQuery = new GoogleQuery(queryInput, searchValue);
-
             ArrayList<ResultItem> results = googleQuery.query();
             for (ResultItem result : results) {
                 System.out.println(result);
             }
-
-            // Pass the queryInput to KeywordList constructor
             KeywordList kLst = new KeywordList(queryInput);
-
             String urlStr;
             KeywordCounter counter = null;
             File file = new File("input.txt");
             Scanner fileSC = new Scanner(file);
-
-            // Skip the first line
             if (fileSC.hasNextLine()) {
                 fileSC.nextLine();
             }
-
             for (ResultItem resultItem : results) {
                 counter = new KeywordCounter(resultItem.getUrl());
 
@@ -73,7 +74,6 @@ public class Main {
                 float totalScore = kLst.calculateTotalScore();
                 kLst.addResultItemWithScore(resultItem, totalScore);
                 fileSC = new Scanner(file);
-                // Skip the first line
                 if (fileSC.hasNextLine()) {
                     fileSC.nextLine();
                 }
