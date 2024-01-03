@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import { Link } from "expo-router";
 
 const Menu = () => {
-  
+
 
   return (
     <View style={styles.menu}>
@@ -46,16 +46,16 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
     backgroundColor: 'rgb(0, 31, 63)',
-    
+    justifyContent: 'center'
   },
   container: {
     width: 296,
     height: 896,
     flexShrink: 0,
     backgroundColor: '#1A4071',
-    
+
   },
-  
+
   playerBioGroup: {
     width: 256,
     height: 62,
@@ -109,9 +109,9 @@ const styles = StyleSheet.create({
     height: 62,
     flexShrink: 0,
     borderRadius: 10,
-    backgroundColor: 'rgba(231, 76, 60, 0.74)',
+    backgroundColor: '#B2494A',
     marginTop: 20,
-    
+
     alignItems: 'center'
   },
   othersText: {

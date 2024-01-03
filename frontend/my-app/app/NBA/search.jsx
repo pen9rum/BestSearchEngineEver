@@ -126,6 +126,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         display: 'flex',
         marginTop: 0,
+        color: 'white',
     },
     searchInput: {
         height: 40,
