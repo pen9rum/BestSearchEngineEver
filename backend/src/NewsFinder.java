@@ -3,6 +3,9 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+
+
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -28,12 +31,15 @@ public class NewsFinder {
     private String content;
     private boolean isPlayerInTitle;
     private List<NewsItem> newsWithKeyword;
+    private String queryInput;
 
-    public NewsFinder(String playerUrl) {
+    public NewsFinder(String playerUrl, String queryInput) {
         this.playerUrl = playerUrl;
         this.isPlayerInTitle = false;
         this.newsWithKeyword = new ArrayList<>();
+        this.queryInput = queryInput;
     }
+   
 
     private String fetchContent() throws IOException {
         URL url = new URL(this.playerUrl);
@@ -56,16 +62,20 @@ public class NewsFinder {
         content = fetchContent();
         Document doc = Jsoup.parse(content);
         Elements titleElements = doc.select("h1, h2, h3, h4, h5, h6"); // Add more selectors as needed
-        
+
         for (Element titleElement : titleElements) {
             String titleText = titleElement.text();
             if (titleText.toLowerCase().contains(keyword.toLowerCase())) {
-                String url = titleElement.baseUri();
-                newsWithKeyword.add(new NewsItem(titleText, url));
-                isPlayerInTitle = true;
+                Element anchorElement = titleElement.closest("a"); // Find the nearest ancestor 'a' element
+                if (anchorElement != null) {
+                    String url = anchorElement.absUrl("href"); // Use absUrl to get the absolute URL
+                    newsWithKeyword.add(new NewsItem(titleText, url));
+                    isPlayerInTitle = true;
+                }
             }
         }
     }
+
 
     public List<NewsItem> getNewsWithKeyword() {
         return newsWithKeyword;
@@ -93,18 +103,17 @@ public class NewsFinder {
         }
     }
 
-    public static void main(String[] args) {
-        NewsFinder finder = new NewsFinder("https://sports.yahoo.com/nba/players/4612/news/");
+    public void newsFinder() {      
         try {
-            finder.findNewsWithKeyword("Curry");
-            List<NewsItem> newsItems = finder.getNewsWithKeyword();
-            if (finder.isPlayerInTitle()) {
+            findNewsWithKeyword(queryInput);
+            List<NewsItem> newsItems = getNewsWithKeyword();
+            if (isPlayerInTitle()) {
                 for (NewsItem item : newsItems) {
                     System.out.println("Title: " + item.getTitle() + " URL: " + item.getUrl());
                 }
             } else {
                 System.out.println("No news titles with the specified keyword were found.");
-            }
+            }System.out.println("------------------------------------------------------");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -113,3 +122,4 @@ public class NewsFinder {
 
 	
 }
+

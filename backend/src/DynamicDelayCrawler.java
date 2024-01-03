@@ -27,4 +27,3 @@ public class DynamicDelayCrawler {
         return Math.random() > 0.2;
     }
 }
-

@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
@@ -74,8 +76,15 @@ return totalScore;
                 new ResultItem("WIKI " + getUserInput(), "https://en.wikipedia.org/wiki/" + getUserInput()), 
                 30000 
             ));
+        otherResults.add(new ResultItemWithScore(
+                new ResultItem("WIKI " + getUserInput(), "https://en.wikipedia.org/wiki/" + getUserInput()), 
+                30000 
+            ));
         int count = 0;
         for (ResultItemWithScore resultItem : resultItemsWithScores) {
+        	if(resultItem.getResultItem().getUrl().contains("nba.com/player/")) {
+            	NBAstatUrl = resultItem.getResultItem().getUrl();
+            }
             if (resultItem.getScore() > 0) {
                 if (count < 10) {
                     topResults.add(resultItem);
@@ -85,7 +94,8 @@ return totalScore;
                 count++;
             } else {
                 break;
-            }
+            } 
+            
         }
         if(topResults.size()!=0)
         {
@@ -106,20 +116,24 @@ return totalScore;
         }
         if(otherResults.size()!=0)
         {
-        	System.out.println("Results Below are orher stats:"
+        	System.out.println("Results Below are other stats:"
                     );
         	for (ResultItemWithScore item : otherResults) {
                 System.out.println("Score: " + (item.getScore() >= 0 ? item.getScore() : "uncalculated") +
                         " Title: " + item.getResultItem().getTitle() +
                         ", URL: " + item.getResultItem().getUrl()
                 );
+               
+                
             }
+        	
         }
         else
         {
         	System.out.println("No other results found"
             );
         }
+        
         
     }
 

@@ -2,6 +2,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
 import java.io.File;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
@@ -17,7 +18,7 @@ public class Main {
     		aroundTheNBA.printAroundTheNBA();
             DatabasePlayerSearch DBsearch = new DatabasePlayerSearch();
         	Scanner scn = new Scanner(System.in);
-        	System.out.print("Enter the name to search: ");
+        	//System.out.print("Enter the name to search: ");
         	String inputName;
         	while (true) {
         	    System.out.print("Enter the name to search: ");
@@ -32,7 +33,7 @@ public class Main {
         	    }
         	    break;
         	}
-        	List<String> matchingNames = DBsearch.searchPlayerByName(inputName);
+        	/*List<String> matchingNames = DBsearch.searchPlayerByName(inputName);
         	while(matchingNames.size()==0)
         	{
         		System.out.print("Enter the name to search: ");
@@ -42,15 +43,20 @@ public class Main {
         		System.out.println("Matching Names:");
         		for (String fullName : matchingNames) {
         			System.out.println(fullName);
-        		}      	
+        		}      */	
         	System.out.print("Enter the name among them and press Enter : ");
             String queryInput = scn.nextLine();
+            NewsFinder finder = new NewsFinder("https://sports.yahoo.com/nba/players/4612/news/",queryInput);
         	System.out.print("Enter the searchValue: ");
             int searchValue = scn.nextInt();
             GoogleQuery googleQuery = new GoogleQuery(queryInput, searchValue);
+            
+            finder.newsFinder();
+            
             ArrayList<ResultItem> results = googleQuery.query();
             for (ResultItem result : results) {
                 System.out.println(result);
+              
             }
             KeywordList kLst = new KeywordList(queryInput);
             String urlStr;
