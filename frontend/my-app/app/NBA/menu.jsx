@@ -1,48 +1,40 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { Link } from "expo-router";
 
 const Menu = () => {
-  const navigation = useNavigation();
-
-  const handlePlayerBioClick = () => {
-    navigation.navigate('info'); 
-  };
-
-  const handlePlayerNewsClick = () => {
-    navigation.navigate('news'); 
-  };
-
-  const handleOthersClick = () => {
-    navigation.navigate('others'); 
-  };
+  
 
   return (
     <View style={styles.menu}>
-      <View style={styles.container}>
-        <Text style={styles.searchTitle}>Search</Text>
-        <TouchableOpacity style={styles.searchFrame}>
-          <Image
-            source={require('../../assets/pic/search (1).png')}
-            style={{ width: 24, height: 24, flexShrink: 0 }}
-          />
-        </TouchableOpacity>
-        </View>
-      <TouchableOpacity
-        style={styles.playerBioGroup}
-        onPress={handlePlayerBioClick}>
-        <Text style={styles.playerBioText}>Player Bio</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.playerNewsGroup}
-        onPress={handlePlayerNewsClick}>
-        <Text style={styles.playerNewsText}>Player News</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.othersGroup}
-        onPress={handleOthersClick}>
-        <Text style={styles.othersText}>Others</Text>
-      </TouchableOpacity>
+      
+      <Link href={{
+        pathname: '/NBA/result',
+        query: { type: 1 }
+      }}>
+        <TouchableOpacity
+          style={styles.playerBioGroup}
+        >
+          <Text style={styles.playerBioText}>Player Bio</Text>
+        </TouchableOpacity></Link>
+      <Link href={{
+        pathname: '/NBA/newshome',
+        query: { type: 1 }
+      }}>
+        <TouchableOpacity
+          style={styles.playerNewsGroup}
+        >
+          <Text style={styles.playerNewsText}>Player News</Text>
+        </TouchableOpacity></Link>
+      <Link href={{
+        pathname: '/NBA/others',
+        query: { type: 1 }
+      }}>
+        <TouchableOpacity
+          style={styles.othersGroup}>
+          <Text style={styles.othersText}>Others</Text>
+        </TouchableOpacity></Link>
     </View>
   );
 };
@@ -51,35 +43,19 @@ const styles = StyleSheet.create({
   menu: {
     display: 'inline-flex',
     height: 896,
-    paddingRight: 118,
     flexDirection: 'column',
-    justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 48,
-    backgroundColor: '#0E2240',
+    backgroundColor: 'rgb(0, 31, 63)',
+    
   },
   container: {
     width: 296,
     height: 896,
     flexShrink: 0,
     backgroundColor: '#1A4071',
+    
   },
-  searchTitle: {
-    width: 213,
-    height: 45,
-    flexShrink: 0,
-    color: '#FFF',
-    fontFamily: 'Inter',
-    fontSize: 40,
-    fontStyle: 'normal',
-    fontWeight: '800',
-    lineHeight: 'normal',
-  },
-  searchFrame: {
-    width: 24,
-    height: 24,
-    flexShrink: 0,
-  },
+  
   playerBioGroup: {
     width: 256,
     height: 62,
@@ -87,6 +63,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     backgroundColor: '#B2494A',
     marginTop: 20,
+    alignItems: 'center'
   },
   playerBioText: {
     display: 'flex',
@@ -110,6 +87,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     backgroundColor: '#B2494A',
     marginTop: 20,
+    alignItems: 'center'
   },
   playerNewsText: {
     display: 'flex',
@@ -133,6 +111,8 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     backgroundColor: 'rgba(231, 76, 60, 0.74)',
     marginTop: 20,
+    
+    alignItems: 'center'
   },
   othersText: {
     display: 'flex',
