@@ -8,5 +8,6 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="D:/BestSearchEngineEver/backend/jsoup-1.16.2.jar"/>
 	<classpathentry kind="lib" path="D:/BestSearchEngineEver/backend/mysql-connector-j-8.0.32.jar"/>
+	<classpathentry kind="lib" path="D:/BestSearchEngineEver/backend/selenium"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

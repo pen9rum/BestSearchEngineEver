@@ -47,7 +47,7 @@ public class NewsFinder {
    		String url = null;	   
    		try 
    		{		
-   			String encodeKeyword=java.net.URLEncoder.encode( "Yahoo NBA news"+searchKeyword,"utf-8");
+   			String encodeKeyword=java.net.URLEncoder.encode( "espn NBA news"+searchKeyword,"utf-8");
    			
    			url = "https://www.google.com/search?q="+ encodeKeyword +"&lr=lang_en";
    			Document document = Jsoup.connect(url).get();
@@ -94,7 +94,7 @@ public class NewsFinder {
         executor.awaitTermination(1, TimeUnit.HOURS); // 等待所有任務完成
 
         newsWithKeyword.sort((item1, item2) -> Integer.compare(item2.getKeywordCount(), item1.getKeywordCount()));
-        for (int i = 0; i < Math.min(newsWithKeyword.size(), 10); i++) {
+        for (int i = 0; i < Math.min(newsWithKeyword.size(), 100); i++) {
             NewsItem item = newsWithKeyword.get(i);
             System.out.println("Title: " + item.getTitle() + " | URL: " + item.getUrl() + " | Count: " + item.getKeywordCount());
         }
@@ -146,4 +146,3 @@ public class NewsFinder {
 
 	
 }
-
