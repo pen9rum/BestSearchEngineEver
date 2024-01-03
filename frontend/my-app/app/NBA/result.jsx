@@ -1,37 +1,22 @@
-{/*
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import LinearGradient from 'react-native-linear-gradient';
 
 
 const Result = () => {
-const navigation = useNavigation();
-
-const handlePlayerBioClick = () => {
-    navigation.navigate('info'); 
-  };
-
-const handlePlayerNewsClick = () => {
-    navigation.navigate('news'); 
-  };
-
-const handleOthersClick = () => {
-    navigation.navigate('others'); 
-  };
-const handleCloseClick = () =>{
-    navigation.navigate('search');
-};
 
 return (
     <View style={styles.result}>
       <View style={styles.header}>
-      <TouchableOpacity onPress={handleCloseClick}>
+      <Link href={{
+        pathname: '/NBA/result',
+        query: { type: 1 }
+      }}>
       <Image
            source={require('../../assets/icons/x.png')}
            style={styles.close}
         />
-        </TouchableOpacity>
+        </Link>
       <Image
           source={{ uri: '../../assets/pic/image 1.jpg' }} 
           style={styles.playerImg}
@@ -47,7 +32,10 @@ return (
       </View>
       <View style={styles.info}>
         <View style={styles.infoBlock}>
-        <TouchableOpacity onPress={handlePlayerBioClick}>
+        <Link href={{
+        pathname: '/NBA/info',
+        query: { type: 1 }
+      }}>
             <Image
             source={require('../../assets/pic/Bio.png')}
             style={styles.BioPic}
@@ -60,10 +48,13 @@ return (
                 />
             </View>
 
-        </TouchableOpacity>
+        </Link>
         </View>
         <View style={styles.infoBlock}>
-        <TouchableOpacity onPress={handlePlayerNewsClick}>
+        <Link href={{
+        pathname: '/NBA/news',
+        query: { type: 1 }
+      }}>
             <Image
             source={require('../../assets/pic/News.png')}
             style={styles.NewsPic}
@@ -75,10 +66,13 @@ return (
                 style={styles.linearDec}
                 />
             </View>
-        </TouchableOpacity>
+        </Link>
         </View>
         <View style={styles.infoBlock}>
-        <TouchableOpacity onPress={handleOthersClick}>
+        <Link href={{
+        pathname: '/NBA/others',
+        query: { type: 1 }
+      }}>
             <Image
             source={require('../../assets/pic/Others.png')}
             style={styles.OthersPic}
@@ -90,7 +84,7 @@ return (
                 style={styles.linearDec}
                 />
             </View>
-        </TouchableOpacity>
+        </Link>
         </View>
       </View>
       
@@ -205,4 +199,3 @@ const styles = StyleSheet.create({
 });
 
 export default Result;
-*/}
