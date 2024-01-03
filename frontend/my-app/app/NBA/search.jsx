@@ -84,6 +84,10 @@ export default function Home() {
 
                 {/* 球員選單 */}
                 <View style={styles.playerContainer}>
+                <Link href={{
+                    pathname: '/NBA/result',
+                    query: { type: 1 }
+                }}>
                     <View style={styles.playerWrapper}>
                         <View style={{ width: 100, height: 80 }}>
                             <Image
@@ -95,7 +99,7 @@ export default function Home() {
                             <Text style={{ fontSize: 16 }}>qwertyuiopasdfghjklzxcvbnm</Text>
                         </View>
                     </View>
-                    
+                    </Link>
                 </View>
 
 
@@ -126,6 +130,8 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         display: 'flex',
         marginTop: 0,
+        color: 'white',
+
     },
     searchInput: {
         height: 40,

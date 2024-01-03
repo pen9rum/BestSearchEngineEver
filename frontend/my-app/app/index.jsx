@@ -1,7 +1,6 @@
 import { Text, TextInput } from "react-native-paper";
-import { View, ImageBackground } from "react-native";
+import { View, ImageBackground,TouchableOpacity } from "react-native";
 import { Link, Tabs } from "expo-router";
-import { Card, Icon, MD3Colors } from "react-native-paper";
 import { Image, StyleSheet } from 'react-native';
 import { useState } from "react";
 
@@ -51,7 +50,7 @@ export default function Home() {
                     </View>
 
                     {/* 搜尋欄 */}
-                    <View style={styles.searchContainer}>
+                    <TouchableOpacity style={styles.searchContainer}>
                         <Link href={{
                             pathname: '/NBA/search',
                             query: { type: 1 }
@@ -72,7 +71,7 @@ export default function Home() {
                                     }}
                                     placeholder={"Let's search for players"}
                                     placeholderTextColor={"black"}
-                                    
+
                                 />
                                 <Image
                                     source={require('../assets/icons/search.png')}
@@ -80,12 +79,12 @@ export default function Home() {
                                 />
                             </View>
                         </Link>
-                    </View>
+                    </TouchableOpacity>
                 </View>
 
                 {/* 新聞欄 */}
                 <View style={styles.newsContainer}>
-                    <Text style={{ fontWeight: 'bold' }}>Today's Focus</Text>
+                    <Text style={{ fontWeight: 'bold', marginTop: 10 }}>Today's Focus</Text>
                     <View style={styles.newsWrapper}>
                         <View style={{ width: 100, height: 80 }}>
                             <Image
@@ -94,9 +93,18 @@ export default function Home() {
                             />
                         </View>
                         <View style={{ width: 180, height: 80, marginRight: 5, marginTop: 5 }}>
-                            <Text style={{ fontSize: 16 }}>qwertyuiopasdfghjklzxcvbnm</Text>
+                            <View style={{ width: '100%' }}>
+                                <Text numberOfLines={1} ellipsizeMode="tail" style={{ fontSize: 16 }}>qwertyuiopasdfghjklzxcvbnmb</Text>
+                            </View>
+                            <View>
+                                <Text numberOfLines={3} ellipsizeMode="tail" style={{ fontSize: 12 }}>qwertyuiopasdfghjklzxcvbnmbkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk</Text>
+                            </View>
+                            <View>
+                                <Text style={{ fontSize: 12 }}>111/1/1</Text>
+                            </View>
                         </View>
                     </View>
+                    
                     <View style={styles.newsWrapper}>
                         <View style={{ width: 100, height: 80 }}>
                             <Image
@@ -105,9 +113,18 @@ export default function Home() {
                             />
                         </View>
                         <View style={{ width: 180, height: 80, marginRight: 5, marginTop: 5 }}>
-                            <Text style={{ fontSize: 16 }}>qwertyuiopasdfghjklzxcvbnm</Text>
+                            <View style={{ width: '100%' }}>
+                                <Text numberOfLines={1} ellipsizeMode="tail" style={{ fontSize: 16 }}>qwertyuiopasdfghjklzxcvbnmb</Text>
+                            </View>
+                            <View>
+                                <Text numberOfLines={3} ellipsizeMode="tail" style={{ fontSize: 12 }}>qwertyuiopasdfghjklzxcvbnmbkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk</Text>
+                            </View>
+                            <View>
+                                <Text style={{ fontSize: 12 }}>111/1/1</Text>
+                            </View>
                         </View>
                     </View>
+
                     <View style={styles.newsWrapper}>
                         <View style={{ width: 100, height: 80 }}>
                             <Image
@@ -116,35 +133,24 @@ export default function Home() {
                             />
                         </View>
                         <View style={{ width: 180, height: 80, marginRight: 5, marginTop: 5 }}>
-                            <Text style={{ fontSize: 16 }}>qwertyuiopasdfghjklzxcvbnm</Text>
+                            <View style={{ width: '100%' }}>
+                                <Text numberOfLines={1} ellipsizeMode="tail" style={{ fontSize: 16 }}>qwertyuiopasdfghjklzxcvbnmb</Text>
+                            </View>
+                            <View>
+                                <Text numberOfLines={3} ellipsizeMode="tail" style={{ fontSize: 12 }}>qwertyuiopasdfghjklzxcvbnmbkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk</Text>
+                            </View>
+                            <View>
+                                <Text style={{ fontSize: 12 }}>111/1/1</Text>
+                            </View>
                         </View>
                     </View>
+
+
+
+
                 </View>
 
-                {/*參考用
-                <Link href={{
-                    pathname: '/Auth',
-                    query: { type: 1 }
-                }}>
-                    <Card
-                        style={{
-                            display: 'flex',
-                            marginTop: 100,
-                        }}
-                    >
-                        <Text style={styles.customFontText}>我是看護</Text>
-                        <Card.Content style={{
-                            display: 'flex',
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                        }}>
-                            <Image
-                                source={require("../assets/icons/hackathon_icon/caregiver.png")}
-                                style={{ width: 50, height: 50 }}
-                            />
-                        </Card.Content>
-                    </Card>
-                </Link>*/}
+                
             </View>
 
         </ImageBackground>
@@ -172,6 +178,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         display: 'flex',
         marginTop: 0,
+        color: 'white',
     },
     searchInput: {
         height: 40,
@@ -202,7 +209,8 @@ const styles = StyleSheet.create({
         height: 30,
         backgroundColor: "rgb(215 215 215)",
         borderRadius: 16,
-        width: 280
+        width: 280,
+        
     },
     newsContainer: {
         justifyContent: "flex-start",
@@ -214,7 +222,7 @@ const styles = StyleSheet.create({
         justifyContent: "space-around",
         alignItems: "center",
         flexDirection: "row",
-        marginTop: 10,
+        marginTop: 5,
         height: 70,
         backgroundColor: "#4F577D",
         borderRadius: 8,
