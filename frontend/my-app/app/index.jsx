@@ -1,7 +1,6 @@
 import { Text, TextInput } from "react-native-paper";
 import { View, ImageBackground } from "react-native";
 import { Link, Tabs } from "expo-router";
-import { Card, Icon, MD3Colors } from "react-native-paper";
 import { Image, StyleSheet } from 'react-native';
 import { useState } from "react";
 
@@ -97,28 +96,11 @@ export default function Home() {
                             <Text style={{ fontSize: 16 }}>qwertyuiopasdfghjklzxcvbnm</Text>
                         </View>
                     </View>
-                    <View style={styles.newsWrapper}>
-                        <View style={{ width: 100, height: 80 }}>
-                            <Image
-                                source={require('../assets/icons/news.jpg')}
-                                style={{ width: 90, height: 70, margin: 5 }}
-                            />
-                        </View>
-                        <View style={{ width: 180, height: 80, marginRight: 5, marginTop: 5 }}>
-                            <Text style={{ fontSize: 16 }}>qwertyuiopasdfghjklzxcvbnm</Text>
-                        </View>
-                    </View>
-                    <View style={styles.newsWrapper}>
-                        <View style={{ width: 100, height: 80 }}>
-                            <Image
-                                source={require('../assets/icons/news.jpg')}
-                                style={{ width: 90, height: 70, margin: 5 }}
-                            />
-                        </View>
-                        <View style={{ width: 180, height: 80, marginRight: 5, marginTop: 5 }}>
-                            <Text style={{ fontSize: 16 }}>qwertyuiopasdfghjklzxcvbnm</Text>
-                        </View>
-                    </View>
+                    
+
+
+
+
                 </View>
 
                 {/*參考用
