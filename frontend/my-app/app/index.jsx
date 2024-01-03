@@ -60,7 +60,7 @@ export default function Home() {
                                 alignItems: 'center',
                                 justifyContent: "space-between",
                                 width: 250,
-                                
+
                             }}>
                                 <TextInput
                                     style={{
@@ -71,7 +71,7 @@ export default function Home() {
                                     }}
                                     placeholder={"Let's search for players"}
                                     placeholderTextColor={"black"}
-                                    
+
                                 />
                                 <Image
                                     source={require('../assets/icons/search.png')}
@@ -93,10 +93,18 @@ export default function Home() {
                             />
                         </View>
                         <View style={{ width: 180, height: 80, marginRight: 5, marginTop: 5 }}>
-                            <Text style={{ fontSize: 16 }}>qwertyuiopasdfghjklzxcvbnm</Text>
+                            <View style={{ width: '100%' }}>
+                                <Text numberOfLines={1} ellipsizeMode="tail" style={{ fontSize: 16 }}>qwertyuiopasdfghjklzxcvbnmb</Text>
+                            </View>
+                            <View>
+                                <Text numberOfLines={3} ellipsizeMode="tail" style={{ fontSize: 12 }}>qwertyuiopasdfghjklzxcvbnmbkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk</Text>
+                            </View>
+                            <View>
+                                <Text style={{ fontSize: 12 }}>111/1/1</Text>
+                            </View>
                         </View>
                     </View>
-                    
+
 
 
 

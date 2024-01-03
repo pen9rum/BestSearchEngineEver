@@ -1,149 +1,161 @@
-import React from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { Text, TextInput } from "react-native-paper";
+import { View, ImageBackground } from "react-native";
+import { Link, Tabs } from "expo-router";
+import { Image, StyleSheet } from 'react-native';
+import { useState } from "react";
 
-const NewsFromSearchEngine = () => {
-  return (
-    <View style={styles.container}>
-      {/* Head Section */}
-      <View style={styles.head}>
-        {/*add link here*/}
-        <Image
-          source={require('frontend/my-app/assets/icons/x.png')}
-          style={styles.closeIcon}
-        />
-        <Text style={styles.yahooNewsText}>Yahoo News</Text>
-      </View>
+export default function Home() {
 
-      {/* Info Section */}
-      <View style={styles.info}>
-        <Text style={styles.latestNewsText}>Latest News</Text>
+    return (
+        <ImageBackground
+            source={require("../../assets/pic/News.png")}
+            resizeMode="cover"
+            style={{
+                width: '100%',
+                height: '100%',
+                justifyContent: "center",
+                flex: 1,
+            }}>
 
-        {/* News Blocks */}
-        <View style={styles.newsBlock}>
-          <Image
-            source={require('frontend/my-app/assets/pic/News.png')}
-            style={styles.newsPhoto}
-          />
-          <Text style={styles.dateText}>2024-01-10</Text>
-          <Text style={styles.detailsText}>Details about the news...</Text>
-          <Text style={styles.newsTitleText}>News Title</Text>
-        </View>
-        {/* More News Blocks can be added here */}
-      </View>
+            <View style={{
+                width: '100%',
+                height: '100%',
+                flex: 1,
+                justifyContent: "flex-start",
+                alignItems: 'center',
+            }}>
+                <View style={{
+                    backgroundColor: '#FFC72C',
+                    width: '100%',
+                    alignItems: 'center',
+                    paddingVertical: 10,
+                }}>
+                    <View style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'center',
+                        textAlign: 'flex-start',
+                        width: 330,
+                    }}>
 
-      {/* Background Picture */}
-      <Image
-        source={require('<path-to-background-image>')}
-        style={styles.backgroundImage}
-      />
-    </View>
-  );
-};
+                        <View style={styles.container}>
+                            <View style={styles.headArea}>
+                                <Link href={{
+                                    pathname: '/NBA/result',
+                                    query: { type: 1 }
+                                }}>
+                                    <Image
+                                        source={require('../../assets/icons/close.png')}
+                                        style={{ width: 17, height: 17, marginRight: '10%', tintColor: 'white' }}
+                                    />
+                                </Link>
+                                <Image
+                                    source={require('../../assets/icons/menu.png')}
+                                    style={{ width: 25, height: 20, marginLeft: '10%', tintColor: 'white' }}
+                                />
+                            </View>
+                        </View>
+                        <View style={styles.container}>
+                            <Text style={styles.headerText}>News</Text>
+                        </View>
+                    </View>
+
+                </View>
+                {/* 新聞欄 */}
+                <View style={{
+                    marginVertical: 10,
+                    padding: 5,
+                    width: 320,
+                    backgroundColor: 'rgba(0, 31, 63, 0.5)',
+                    borderRadius: 12,
+                    alignItems: "center",
+                    flexDirection: "column",
+                }}>
+                    <View style={{
+                        flex: 1,
+                        justifyContent: "space-around",
+                        alignItems: "center",
+                        flexDirection: "row",
+                        marginBotton: 10,
+                        height: 70,
+                        borderRadius: 8,
+                        width: 300
+                    }}>
+                        <View style={{ width: 100, height: 80 }}>
+                            <Image
+                                source={require('../../assets/icons/news.jpg')}
+                                style={{ width: 90, height: 70, margin: 5 }}
+                            />
+                        </View>
+                        <View style={{ width: 180, height: 80, marginRight: 5, marginTop: 5 }}>
+                            <View style={{ width: '100%' }}>
+                                <Text numberOfLines={1} ellipsizeMode="tail" style={{ fontSize: 16 }}>qwertyuiopasdfghjklzxcvbnmb</Text>
+                            </View>
+                            <View>
+                                <Text numberOfLines={3} ellipsizeMode="tail" style={{ fontSize: 12 }}>qwertyuiopasdfghjklzxcvbnmbkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk</Text>
+                            </View>
+                            <View>
+                                <Text style={{ fontSize: 12 }}>111/1/1</Text>
+                            </View>
+                        </View>
+                    </View>
+                    <View style={{
+                        flex: 1,
+                        justifyContent: "space-around",
+                        alignItems: "center",
+                        flexDirection: "row",
+                        marginBotton: 10,
+                        height: 70,
+                        borderRadius: 8,
+                        width: 300
+                    }}>
+                        <View style={{ width: 100, height: 80 }}>
+                            <Image
+                                source={require('../../assets/icons/news.jpg')}
+                                style={{ width: 90, height: 70, margin: 5 }}
+                            />
+                        </View>
+                        <View style={{ width: 180, height: 80, marginRight: 5, marginTop: 5 }}>
+                            <View style={{ width: '100%' }}>
+                                <Text numberOfLines={1} ellipsizeMode="tail" style={{ fontSize: 16 }}>qwertyuiopasdfghjklzxcvbnmb</Text>
+                            </View>
+                            <View>
+                                <Text numberOfLines={3} ellipsizeMode="tail" style={{ fontSize: 12 }}>qwertyuiopasdfghjklzxcvbnmbkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk</Text>
+                            </View>
+                            <View>
+                                <Text style={{ fontSize: 12 }}>111/1/1</Text>
+                            </View>
+                        </View>
+                    </View>
+                    
+                </View>
+            </View>
+
+        </ImageBackground>
+
+    )
+}
 
 const styles = StyleSheet.create({
-  container: {
-        display: 'flex',
-        width: 414,
+    headContainer: {
+        flex: 1,
         flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'flex-start',
-        borderRadius: 48,
-        backgroundColor: '#001F3F',
-  },
-  head: {
-    width: 414,
-    height: 144,
-    background: 'rgba(255, 199, 44, 0.90)',
-  },
-  closeIcon: {
-    width: 34,
-    height: 33,
-    flexShrink: 0,
-    // Add additional styles as needed
-  },
-  yahooNewsText: {
-    width: 340,
-    height: 50,
-    flexShrink: 0,
-    color: '#FFF',
-    fontFamily: 'Inter',
-    fontSize: 50,
-    fontStyle: 'normal',
-    fontWeight: '700',
-    lineHeight: 'normal',
-  },
-  info: {
-    width: 413,
-    height: 1002,
-    // Add additional styles as needed
-  },
-  latestNewsText: {
-    width: 210,
-    height: 31,
-    flexShrink: 0,
-    color: '#FFF',
-    fontFamily: 'Inter',
-    fontSize: 22,
-    fontStyle: 'normal',
-    fontWeight: '700',
-    lineHeight: 'normal',
-  },
-  newsBlock: {
-    display: 'inline-flex',
-    padding: '15px 2px 27px 16px',
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-    borderRadius: 10,
-    background: 'rgba(0, 31, 63, 0.50)',
-  },
-  newsPhoto: {
-    width: 143,
-    height: 129,
-    flexShrink: 0,
-    borderRadius: 10,
-    background: 'url(frontend/my-app/assets/pic/yahooNews.png) lightgray 50% / cover no-repeat',
-  },
-  dateText: {
-    display: 'flex',
-    width: 95,
-    height: 26,
-    flexDirection: 'column',
-    justifyContent: 'flex-end',
-    flexShrink: 0,
-    color: '#7D7D7D',
-    fontFamily: 'Inter',
-    fontSize: 15,
-    fontStyle: 'normal',
-    fontWeight: '400',
-    lineHeight: 'normal',
-  },
-  detailsText: {
-    width: 197,
-    height: 46,
-    flexShrink: 0,
-    color: '#FFF',
-    fontFamily: 'Inter',
-    fontSize: 15,
-    fontStyle: 'normal',
-    fontWeight: '600',
-    lineHeight: 'normal',
-  },
-  newsTitleText: {
-    color: '#FFF',
-    fontFamily: 'Inter',
-    fontSize: 22,
-    fontStyle: 'normal',
-    fontWeight: '800',
-    lineHeight: 'normal',
-  },
-  backgroundImage: {
-    width: 1002,
-    height: 413,
-    transform: 'rotate(-90deg)',
-    flexShrink: 0,
-    opacity: 0.8,
-    background: 'url(frontend/my-app/assets/pic/News.png) lightgray 50% / cover no-repeat',
-  },
-});
-
-export default NewsFromSearchEngine;
+        justifyContent: 'flex-start',
+    },
+    headArea: {
+        paddingVertical: 10,
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+    },
+    container: {
+        width: "100%",
+    },
+    headerText: {
+        fontSize: 24,
+        fontWeight: 'bold',
+        display: 'flex',
+        marginTop: 0,
+        color: 'white'
+    }
+})
