@@ -51,7 +51,7 @@ public class Main {
             int searchValue = scn.nextInt();
             GoogleQuery googleQuery = new GoogleQuery(queryInput, searchValue);
             
-            finder.newsFinder();
+            finder.findNewsWithKeyword();
             
             ArrayList<ResultItem> results = googleQuery.query();
             for (ResultItem result : results) {
