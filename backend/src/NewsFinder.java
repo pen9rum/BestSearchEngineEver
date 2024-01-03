@@ -1,3 +1,17 @@
+import org.jsoup.Connection;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
+
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -8,6 +22,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -15,17 +31,40 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 public class NewsFinder {
-
+    
     private String playerUrl;
-    private String queryInput;
     private List<NewsItem> newsWithKeyword;
+    private String queryInput;
 
-    public NewsFinder(String playerUrl, String queryInput) {
-        this.playerUrl = playerUrl;
-        this.queryInput = queryInput;
+    public NewsFinder(String queryInput) {
+        //this.playerUrl = playerUrl;
         this.newsWithKeyword = new ArrayList<>();
+        this.queryInput = queryInput;
     }
+   
+    public void googleQuery(String searchKeyword)
+   	{
+   		String url = null;	   
+   		try 
+   		{		
+   			String encodeKeyword=java.net.URLEncoder.encode( "Yahoo NBA news"+searchKeyword,"utf-8");
+   			
+   			url = "https://www.google.com/search?q="+ encodeKeyword +"&lr=lang_en";
+   			Document document = Jsoup.connect(url).get();
 
+               Elements searchResults = document.select("div.tF2Cxc");
+               if (!searchResults.isEmpty()) {
+                   Element firstResult = searchResults.first();
+                   String resultUrl = firstResult.select("a[href]").attr("href");
+                   playerUrl = resultUrl + "news";
+               }
+   		}
+   		catch (Exception e)
+   		{
+   			System.out.println(e.getMessage());
+   		}
+   	}	
+   
     public void findNewsWithKeyword() throws IOException, InterruptedException {
         Document doc = Jsoup.connect(playerUrl).get();
         Elements newsElements = doc.select("a[href]");
@@ -62,7 +101,6 @@ public class NewsFinder {
         System.out.println("---------------------------------------------------------------------");
     }
 
-
     private int countOccurrences(String text, String keyword) {
         int count = 0;
         int i = 0;
@@ -72,6 +110,10 @@ public class NewsFinder {
         }
         return count;
     }
+
+    
+
+    
 
     public static class NewsItem {
         private final String title;
@@ -97,5 +139,11 @@ public class NewsFinder {
         }
     }
 
+
     
+   
+
+
+	
 }
+

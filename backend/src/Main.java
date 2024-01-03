@@ -43,14 +43,14 @@ public class Main {
         		System.out.println("Matching Names:");
         		for (String fullName : matchingNames) {
         			System.out.println(fullName);
-        		}      */	
+        		} */     	
         	System.out.print("Enter the name among them and press Enter : ");
             String queryInput = scn.nextLine();
-            NewsFinder finder = new NewsFinder("https://sports.yahoo.com/nba/players/4612/news/",queryInput);
+            NewsFinder finder = new NewsFinder(queryInput);
         	System.out.print("Enter the searchValue: ");
             int searchValue = scn.nextInt();
             GoogleQuery googleQuery = new GoogleQuery(queryInput, searchValue);
-            
+            finder.googleQuery(queryInput);
             finder.findNewsWithKeyword();
             
             ArrayList<ResultItem> results = googleQuery.query();
