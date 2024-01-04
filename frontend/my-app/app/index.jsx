@@ -84,69 +84,79 @@ export default function Home() {
 
                 {/* 新聞欄 */}
                 <View style={styles.newsContainer}>
-                    <Text style={{ fontWeight: 'bold', marginTop: 10 }}>Today's Focus</Text>
+                    <Text style={{ fontWeight: 'bold', marginTop: 10 ,color: 'white'}}>Today's Focus</Text>
+                    <Link href={{
+                                pathname: 'https://www.nba.com/news/power-rankings-2023-24-week-11',
+                                query: { type: 1 }
+                            }}>
                     <View style={styles.newsWrapper}>
                         <View style={{ width: 100, height: 80 }}>
                             <Image
-                                source={require('../assets/icons/news.jpg')}
+                                source={require('../assets/pic/news1.jpeg')}
                                 style={{ width: 90, height: 70, margin: 5 }}
                             />
                         </View>
                         <View style={{ width: 180, height: 80, marginRight: 5, marginTop: 5 }}>
                             <View style={{ width: '100%' }}>
-                                <Text numberOfLines={1} ellipsizeMode="tail" style={{ fontSize: 16 }}>qwertyuiopasdfghjklzxcvbnmb</Text>
+                                <Text numberOfLines={1} ellipsizeMode="tail" style={{ fontSize: 16 , color:'black'}}>POWER RANKINGS: THUNDER, CLIPPERS SURGING</Text>
                             </View>
                             <View>
-                                <Text numberOfLines={3} ellipsizeMode="tail" style={{ fontSize: 12 }}>qwertyuiopasdfghjklzxcvbnmbkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk</Text>
+                                <Text numberOfLines={3} ellipsizeMode="tail" style={{ fontSize: 11 }}>To open 2024, the Clippers and Thunder are soaring while the Celtics continue to hold down No. 1.</Text>
                             </View>
-                            <View>
-                                <Text style={{ fontSize: 12 }}>111/1/1</Text>
+                            <View style={{marginTop:5}}>
+                                <Text style={{ fontSize: 12}}>22 hours ago</Text>
                             </View>
                         </View>
                     </View>
-                    
+                    </Link>
+                    <Link href={{
+                                pathname: 'https://www.nba.com/news/power-rankings-2023-24-week-11',
+                                query: { type: 1 }
+                            }}>
                     <View style={styles.newsWrapper}>
                         <View style={{ width: 100, height: 80 }}>
                             <Image
-                                source={require('../assets/icons/news.jpg')}
+                                source={require('../assets/pic/news2.jpg')}
                                 style={{ width: 90, height: 70, margin: 5 }}
                             />
                         </View>
                         <View style={{ width: 180, height: 80, marginRight: 5, marginTop: 5 }}>
                             <View style={{ width: '100%' }}>
-                                <Text numberOfLines={1} ellipsizeMode="tail" style={{ fontSize: 16 }}>qwertyuiopasdfghjklzxcvbnmb</Text>
+                                <Text numberOfLines={1} ellipsizeMode="tail" style={{ fontSize: 16 , color:'black'}}>STARTING 5: PORZINGIS VS. HOLMGREN SHOWDOWN LOOMS</Text>
                             </View>
                             <View>
-                                <Text numberOfLines={3} ellipsizeMode="tail" style={{ fontSize: 12 }}>qwertyuiopasdfghjklzxcvbnmbkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk</Text>
+                                <Text numberOfLines={3} ellipsizeMode="tail" style={{ fontSize: 11 }}>Jordan Clarkson has a night to remember in SLC, plus a showdown of two 'unicorn' players in Oklahoma City awaits.</Text>
                             </View>
-                            <View>
-                                <Text style={{ fontSize: 12 }}>111/1/1</Text>
+                            <View style={{marginTop:5}}>
+                                <Text style={{ fontSize: 12 }}>January 2, 2024</Text>
                             </View>
                         </View>
                     </View>
-
+                    </Link>
+                    <Link href={{
+                                pathname: 'https://www.nba.com/news/nba-fantasy-start-sit-guide-for-week-11',
+                                query: { type: 1 }
+                            }}>
                     <View style={styles.newsWrapper}>
                         <View style={{ width: 100, height: 80 }}>
                             <Image
-                                source={require('../assets/icons/news.jpg')}
+                                source={require('../assets/pic/news3.png')}
                                 style={{ width: 90, height: 70, margin: 5 }}
                             />
                         </View>
                         <View style={{ width: 180, height: 80, marginRight: 5, marginTop: 5 }}>
                             <View style={{ width: '100%' }}>
-                                <Text numberOfLines={1} ellipsizeMode="tail" style={{ fontSize: 16 }}>qwertyuiopasdfghjklzxcvbnmb</Text>
+                                <Text numberOfLines={1} ellipsizeMode="tail" style={{ fontSize: 16, color:'black'}}>NBA Fantasy: Start/Sit guide for Week 11</Text>
                             </View>
                             <View>
-                                <Text numberOfLines={3} ellipsizeMode="tail" style={{ fontSize: 12 }}>qwertyuiopasdfghjklzxcvbnmbkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk</Text>
+                                <Text numberOfLines={3} ellipsizeMode="tail" style={{ fontSize: 11 }}>RotoWire discusses the best players to start at each position heading into Week 11 of the fantasy basketball season.</Text>
                             </View>
-                            <View>
-                                <Text style={{ fontSize: 12 }}>111/1/1</Text>
+                            <View style={{marginTop:5}}>
+                                <Text style={{ fontSize: 12 }}>December 31, 2023</Text>
                             </View>
                         </View>
                     </View>
-
-
-
+                    </Link>
 
                 </View>
 
@@ -223,7 +233,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         flexDirection: "row",
         marginTop: 5,
-        height: 70,
+        height: 100,
         backgroundColor: "#4F577D",
         borderRadius: 8,
         width: 300
