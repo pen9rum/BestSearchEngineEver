@@ -20,7 +20,7 @@ const Result = () => {
       }}>
 
         <ImageBackground
-          source={require("../../assets/pic/player.jpg")}
+          source={require("../../assets/pic/stephenCurry.png")}
           resizeMode="cover"
           style={{
             display: 'flex',

@@ -91,7 +91,7 @@ export default function Home() {
                     <View style={styles.playerWrapper}>
                         <View style={{ width: 100, height: 80 }}>
                             <Image
-                                source={require('../../assets/pic/player.jpg')}
+                                source={require('../../assets/pic/stephenCurry.png')}
                                 style={{ width: 90, height: 70, margin: 5 ,borderRadius:5}}
                             />
                         </View>
@@ -100,6 +100,17 @@ export default function Home() {
                         </View>
                     </View>
                     </Link>
+                    <View style={styles.playerWrapper}>
+                        <View style={{ width: 100, height: 80 }}>
+                            <Image
+                                source={require('../../assets/pic/sethCurry.png')}
+                                style={{ width: 90, height: 70, margin: 5 ,borderRadius:5}}
+                            />
+                        </View>
+                        <View style={{ width: 180, height: 80, marginRight: 5, marginTop: 5 }}>
+                            <Text style={{ fontSize: 16}}>Seth Curry</Text>
+                        </View>
+                    </View>
                 </View>
 
 

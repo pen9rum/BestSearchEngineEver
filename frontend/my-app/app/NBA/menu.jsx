@@ -18,6 +18,7 @@ const Menu = () => {
     }}>
       <View style={styles.menu}>
         <Link href={{
+          pathname: '/NBA/result',
           query: { type: 1 }
         }}>
           <Image
