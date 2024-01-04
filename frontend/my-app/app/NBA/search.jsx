@@ -84,18 +84,33 @@ export default function Home() {
 
                 {/* 球員選單 */}
                 <View style={styles.playerContainer}>
+                <Link href={{
+                    pathname: '/NBA/result',
+                    query: { type: 1 }
+                }}>
                     <View style={styles.playerWrapper}>
                         <View style={{ width: 100, height: 80 }}>
                             <Image
-                                source={require('../../assets/icons/news.jpg')}
-                                style={{ width: 90, height: 70, margin: 5 }}
+                                source={require('../../assets/pic/stephenCurry.png')}
+                                style={{ width: 90, height: 70, margin: 5 ,borderRadius:5}}
                             />
                         </View>
                         <View style={{ width: 180, height: 80, marginRight: 5, marginTop: 5 }}>
-                            <Text style={{ fontSize: 16 }}>qwertyuiopasdfghjklzxcvbnm</Text>
+                            <Text style={{ fontSize: 16}}>Stephen Curry</Text>
                         </View>
                     </View>
-                    
+                    </Link>
+                    <View style={styles.playerWrapper}>
+                        <View style={{ width: 100, height: 80 }}>
+                            <Image
+                                source={require('../../assets/pic/sethCurry.png')}
+                                style={{ width: 90, height: 70, margin: 5 ,borderRadius:5}}
+                            />
+                        </View>
+                        <View style={{ width: 180, height: 80, marginRight: 5, marginTop: 5 }}>
+                            <Text style={{ fontSize: 16}}>Seth Curry</Text>
+                        </View>
+                    </View>
                 </View>
 
 
@@ -126,6 +141,8 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         display: 'flex',
         marginTop: 0,
+        color: 'white',
+
     },
     searchInput: {
         height: 40,
@@ -169,7 +186,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         flexDirection: "row",
         marginTop: 10,
-        height: 70,
+        height: 100,
         backgroundColor: "#4F577D",
         borderRadius: 8,
         width: 300

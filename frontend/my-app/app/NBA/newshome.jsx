@@ -5,8 +5,6 @@ import { Image, StyleSheet } from 'react-native';
 import { useState } from "react";
 
 export default function Home() {
-    const [type, setType] = useState(0);
-    const [name, setName] = useState('')
 
     return (
         <ImageBackground
