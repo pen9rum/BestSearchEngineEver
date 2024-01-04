@@ -12,8 +12,8 @@ const Result = () => {
       }}>
       <View style={{
         width: '100%',
-        height: '100%',
-        flex: 1,
+        minHeight: 900,
+        flex: 2,
         justifyContent: "flex-start",
         alignItems: 'center',
         backgroundColor: '#001F3F',
