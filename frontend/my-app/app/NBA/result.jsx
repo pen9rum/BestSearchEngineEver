@@ -1,84 +1,156 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, ImageBackground } from 'react-native';
 import { Link, Tabs } from "expo-router";
 import { Image } from 'react-native';
 
 const Result = () => {
 
   return (
-    <View style={styles.result}>
-      <View style={styles.header}>
-        <View style={styles.headArea}>
+    <ImageBackground
+      style={{
+        flex: 1
+      }}>
+      <View style={{
+        width: '100%',
+        height: '100%',
+        flex: 1,
+        justifyContent: "flex-start",
+        alignItems: 'center',
+        backgroundColor: '#001F3F',
+      }}>
+
+        <ImageBackground
+          source={require("../../assets/pic/player.jpg")}
+          resizeMode="cover"
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-between',
+            textAlign: 'flex-start',
+            alignItems: 'flex-start',
+            width: 500,
+            height: 250
+          }}>
           <Link href={{
             pathname: '',
             query: { type: 1 }
           }}>
             <Image
               source={require('../../assets/icons/close.png')}
-              style={{ width: 17, height: 17, marginRight: '10%', tintColor: 'white' }}
+              style={{ width: 17, height: 17, marginLeft: 20, tintColor: 'black', marginTop: 10 }}
             />
           </Link>
-          <Image
-            source={require('../../assets/icons/menu.png')}
-            style={{ width: 25, height: 20, marginLeft: '10%', tintColor: '#001F3F' }}
-          />
+          <Text style={{
+            fontSize: 40,
+            fontWeight: 'bold',
+            display: 'flex',
+            color: 'black',
+            marginLeft: 20
+          }}>
+            Stephen{'\n'}Curry
+          </Text>
+
+        </ImageBackground>
+        <View>
+          <Text style={styles.statisticsTitle}>Statistics</Text>
         </View>
-        <Text style={styles.statisticsTitle}>Statistics</Text>
-        <View style={styles.statisticShape}>
-          <Text style={styles.statistic}>PPG: 25.5</Text>
-          <Text style={styles.statistic}>RPG: 25.5</Text>
-          <Text style={styles.statistic}>APG: 25.5</Text>
-          <Text style={styles.statistic}>PIE: 25.5</Text>
+        <View style={{
+          width: 420,
+          height: 55,
+          backgroundColor: '#FFC72C',
+          marginBottom: 10,
+          flexDirection: 'row',
+          justifyContent: 'space-around',
+          borderRadius: 50,
+
+        }}>
+          <View style={{
+            flexDirection: 'column',
+            justifyContent: 'space-around',
+          }}>
+            <Text style={styles.statistic}>PPG</Text>
+            <Text style={styles.statistic}>25.5</Text>
+          </View>
+          <View style={{
+            flexDirection: 'column',
+            justifyContent: 'space-around',
+          }}>
+            <Text style={styles.statistic}>RPG</Text>
+            <Text style={styles.statistic}>25.5</Text>
+          </View>
+          <View style={{
+            flexDirection: 'column',
+            justifyContent: 'space-around',
+          }}>
+            <Text style={styles.statistic}>APG</Text>
+            <Text style={styles.statistic}>25.5</Text>
+          </View>
+          <View style={{
+            flexDirection: 'column',
+            justifyContent: 'space-around',
+          }}>
+            <Text style={styles.statistic}>PIE</Text>
+            <Text style={styles.statistic}>25.5</Text>
+          </View>
         </View>
-      </View>
-      <View style={styles.info}>
-        <View style={styles.infoBlock}>
+
+        <View style={{
+          display: 'flex',
+          width: 500,
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}>
           <Link
             href={{
               pathname: '/NBA/info',
               query: { type: 1 },
             }}
           >
-            <Text style={styles.infoChoice}>Player Bio</Text>
-            <Image source={require('../../assets/pic/Bio.png')} style={styles.BioPic} />
+            <ImageBackground
+              source={require("../../assets/pic/Bio.png")}
+              resizeMode="cover" style={styles.infoBlock}>
+              <Text style={styles.infoChoice}>Player Bio</Text>
+            </ImageBackground>
           </Link>
-        </View>
-        <View style={styles.infoBlock}>
+
           <Link
             href={{
               pathname: '/NBA/news',
               query: { type: 1 },
             }}
           >
-            <Text style={styles.infoChoice}>Player News</Text>
-            <Image source={require('../../assets/pic/News.png')} style={styles.NewsPic} />
+            <ImageBackground
+              source={require("../../assets/pic/News.png")}
+              resizeMode="cover" style={styles.infoBlock}>
+              <Text style={styles.infoChoice}>Player News</Text>
+            </ImageBackground>
           </Link>
-        </View>
-        <View style={styles.infoBlock}>
+
           <Link
             href={{
               pathname: '/NBA/others',
               query: { type: 1 },
             }}
           >
-            <Text style={styles.infoChoice}>Others</Text>
-            <Image source={require('../../assets/pic/Others.png')} style={styles.OthersPic} />
+            <ImageBackground
+              source={require("../../assets/pic/Others.png")}
+              resizeMode="cover" style={styles.infoBlock}>
+              <Text style={styles.infoChoice}>Others</Text>
+            </ImageBackground>
           </Link>
         </View>
       </View>
-    </View>
+    </ImageBackground>
   );
 };
 
 const styles = StyleSheet.create({
-  result: {
-    display: 'flex',
-    width: '100%',
-    height: '100%',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'flex-start',
-    backgroundColor: '#001F3F',
+  headArea: {
+    paddingVertical: 10,
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
   header: {
     width: '100%',
@@ -98,7 +170,7 @@ const styles = StyleSheet.create({
     flexShrink: 0,
   },
   statisticsTitle: {
-    width: 330,
+    width: 400,
     height: 34,
     flexShrink: 0,
     color: '#FFF',
@@ -107,80 +179,34 @@ const styles = StyleSheet.create({
     fontStyle: 'normal',
     fontWeight: '800',
     lineHeight: 'normal',
-    marginBottom: 10,
-  },
-  statisticShape: {
-    width: '100%',
-    height: 55.238,
-    flexShrink: 0,
-    backgroundColor: '#FFC72C',
-    marginBottom: 10,
+    marginTop: 10,
   },
   statistic: {
-    color: '#FFF',
-    fontFamily: 'Inter',
+    color: 'black',
     fontSize: 18,
     fontStyle: 'normal',
     fontWeight: '600',
     lineHeight: 'normal',
+    textAlign: 'center',
+    fontWeight: 'bold'
   },
-  info: {
-    display: 'flex',
-    width: 414,
-    height: 540,
-    paddingTop: 1,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'flex-start',
-    flexShrink: 0,
-    flexDirection: 'column'
 
-  },
   infoBlock: {
-    width: 414,
+    width: 500,
     height: 179,
-    flexShrink: 0,
     flexDirection: 'column',
-    
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   infoChoice: {
-        color: '#FFF',
-        fontFamily: 'Inknut Antiqua',
-        fontSize: 50,
-        fontStyle: 'normal',
-        fontWeight: 700,
-        lineHeight: 'normal',
-        flexDirection: 'column',
-        justifyContent: 'center'
-  },
-  linearDec: {
-    width: 414,
-    height: 60,
-    flexShrink: 0,
-  },
-  BioPic: {
-  width: '100%',
-  height: 414,
-  transform: [{ rotate: '-90deg' }],
-  flexShrink: 0,
-  opacity: 0.95,
-  background: 'url(frontend/my-app/assets/pic/Bio.png) lightgray 50% / cover no-repeat',
-  },
-  NewsPic:{
-  width: '100%',
-  height: 179,
-  flexShrink: 0,
-  background: 'url(frontend/my-app/assets/pic/News.png) lightgray 50% / cover no-repeat',
-  },
-  OthersPic:{
-    width: '100%',
-    height: 179,
-    flexShrink: 0,
-  },
-  OthersPic: {
-    width: 414,
-    height: 179,
-    flexShrink: 0,
+    color: '#FFF',
+    fontFamily: 'Inknut Antiqua',
+    fontSize: 50,
+    fontStyle: 'normal',
+    fontWeight: 700,
+    lineHeight: 'normal',
+    textAlign: 'center',
+    justifyContent: 'center'
   },
 });
 

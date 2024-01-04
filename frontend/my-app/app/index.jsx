@@ -1,5 +1,5 @@
 import { Text, TextInput } from "react-native-paper";
-import { View, ImageBackground,TouchableOpacity } from "react-native";
+import { View, ImageBackground, TouchableOpacity } from "react-native";
 import { Link, Tabs } from "expo-router";
 import { Image, StyleSheet } from 'react-native';
 import { useState } from "react";
