@@ -15,32 +15,29 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api")
 public class MyController {
-	
-	private KeywordList kLst;
-	
-	public static boolean isEnglishOrPunctuation(String text) {
-	        return text.matches("^[a-zA-Z\\s.,!?()-_]+$");
-	    }
-    @GetMapping("/hello")
-    public String hello() {
-        return "Hello from Spring Boot!";
-    }
+ 
+ private KeywordList kLst;
+ 
+ public static boolean isEnglishOrPunctuation(String text) {
+         return text.matches("^[a-zA-Z\\s.,!?()-_]+$");
+     }
+   
     @PostMapping("/searchFullname")
     public List searchFullname(@RequestBody String firstname) {
         // 在這裡使用 frontendInput 進行後續處理
-    	
-    	String name = firstname;
-    	DatabasePlayerSearch DBsearch = new DatabasePlayerSearch();
-    	List<String> matchingNames = DBsearch.searchPlayerByName(name);
-    	return matchingNames;
+     
+     String name = firstname;
+     DatabasePlayerSearch DBsearch = new DatabasePlayerSearch();
+     List<String> matchingNames = DBsearch.searchPlayerByName(name);
+     return matchingNames;
     }
     @PostMapping("/searchGoogle")
     public String searchGoogle(@RequestBody String fullname) throws IOException, InterruptedException {
         
-    	// 在這裡使用 frontendInput 進行後續處理
-    	String output;
-    	NewsFinder finder = new NewsFinder(fullname);
-        GoogleQuery googleQuery = new GoogleQuery(fullname, 10);
+     // 在這裡使用 frontendInput 進行後續處理
+     String output;
+     NewsFinder finder = new NewsFinder(fullname);
+        GoogleQuery googleQuery = new GoogleQuery(fullname, 30);
         finder.googleQuery(fullname);
         output = finder.findNewsWithKeyword();
         ArrayList<ResultItem> results = googleQuery.query();
@@ -70,19 +67,29 @@ public class MyController {
             }
         }
         output += kLst.sortAndOutput();
-    	return output ;
+     return output ;
     }
     @PostMapping("/searchStats")
     public String searchStats(@RequestBody String url) throws InterruptedException {
         // 在這裡使用 frontendInput 進行後續處理
-    	PlayerStats stats = new PlayerStats(kLst.getNBAstatUrl());
-    	return stats.getStats();
+     PlayerStats stats = new PlayerStats(kLst.getNBAstatUrl());
+     return stats.getStats();
     }
+   
     
-    @PostMapping("/Header")
-    public HomePageLink Header(@RequestBody String output) {
-        // 在這裡使用 frontendInput 進行後續處理
-        return HomePageLink ;
-    }
-}
+    @RestController
+    @RequestMapping("/api/nba")
+    public class NBAController {
 
+        private final AroundTheNBA aroundTheNBA;
+
+        public NBAController() {
+            this.aroundTheNBA = new AroundTheNBA();
+            aroundTheNBA.fetchNBAData();
+        }
+
+        @GetMapping("/links")
+        public List<HomePageLink> getHomePageLinks() {
+            return aroundTheNBA.getLinks();
+        }
+    }
