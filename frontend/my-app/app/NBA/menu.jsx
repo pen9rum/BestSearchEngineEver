@@ -7,46 +7,64 @@ const Menu = () => {
 
 
   return (
-    <View style={styles.menu}>
-      
-      <Link href={{
-        pathname: '/NBA/result',
-        query: { type: 1 }
-      }}>
-        <TouchableOpacity
-          style={styles.playerBioGroup}
-        >
-          <Text style={styles.playerBioText}>Player Bio</Text>
-        </TouchableOpacity></Link>
-      <Link href={{
-        pathname: '/NBA/newshome',
-        query: { type: 1 }
-      }}>
-        <TouchableOpacity
-          style={styles.playerNewsGroup}
-        >
-          <Text style={styles.playerNewsText}>Player News</Text>
-        </TouchableOpacity></Link>
-      <Link href={{
-        pathname: '/NBA/others',
-        query: { type: 1 }
-      }}>
-        <TouchableOpacity
-          style={styles.othersGroup}>
-          <Text style={styles.othersText}>Others</Text>
-        </TouchableOpacity></Link>
+    <View style={{
+      width: '100%',
+      height: '100%',
+      flex: 1,
+      justifyContent: "flex-start",
+      flexDirection: 'column',
+      alignItems: 'flex-end',
+      backgroundColor: '#001F3F',
+    }}>
+      <View style={styles.menu}>
+        <Link href={{
+          query: { type: 1 }
+        }}>
+          <Image
+            source={require('../../assets/icons/close.png')}
+            style={{ width: 17, height: 17, marginLeft: 20, tintColor: 'white' }}
+          />
+        </Link>
+        <Link href={{
+          pathname: '/NBA/result',
+          query: { type: 1 }
+        }}>
+          <TouchableOpacity
+            style={styles.playerBioGroup}
+          >
+            <Text style={styles.playerBioText}>Player Bio</Text>
+          </TouchableOpacity></Link>
+        <Link href={{
+          pathname: '/NBA/newshome',
+          query: { type: 1 }
+        }}>
+          <TouchableOpacity
+            style={styles.playerNewsGroup}
+          >
+            <Text style={styles.playerNewsText}>Player News</Text>
+          </TouchableOpacity></Link>
+        <Link href={{
+          pathname: '/NBA/others',
+          query: { type: 1 }
+        }}>
+          <TouchableOpacity
+            style={styles.othersGroup}>
+            <Text style={styles.othersText}>Others</Text>
+          </TouchableOpacity></Link>
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   menu: {
-    display: 'inline-flex',
-    height: 896,
+    height: '100%',
+    width: '70%',
     flexDirection: 'column',
-    alignItems: 'center',
-    backgroundColor: 'rgb(0, 31, 63)',
-    justifyContent: 'center'
+    alignItems: 'flex-start',
+    justifyContent: 'center',
+    backgroundColor: '#1A4071',
+    marginLeft: 0
   },
   container: {
     width: 296,
@@ -63,7 +81,8 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     backgroundColor: '#B2494A',
     marginTop: 20,
-    alignItems: 'center'
+    alignItems: 'center',
+    marginLeft: 10,
   },
   playerBioText: {
     display: 'flex',
@@ -79,6 +98,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     lineHeight: 'normal',
     textAlign: 'center',
+    
   },
   playerNewsGroup: {
     width: 256,
@@ -87,7 +107,9 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     backgroundColor: '#B2494A',
     marginTop: 20,
-    alignItems: 'center'
+    alignItems: 'center',
+    marginLeft: 10,
+
   },
   playerNewsText: {
     display: 'flex',
@@ -111,6 +133,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     backgroundColor: '#B2494A',
     marginTop: 20,
+    marginLeft: 10,
 
     alignItems: 'center'
   },
