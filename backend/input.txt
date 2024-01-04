@@ -1,4 +1,17 @@
 Keyword     score
+news		-3
+highlights	-3
+socialMedia	-3
+Twitter		-3
+Facebook	-3
+Instagram	-3
+media		-1.5
+interview	-1.5
+shopping	-3
+buy		-3
+store		-3
+merchandise	-3
+
 biography	3
 personal	1.5
 profile		3
@@ -15,15 +28,3 @@ college		2.5
 born		3
 draft		2
 junior		2
-news		-3
-highlights	-3
-socialMedia	-3
-Twitter		-3
-Facebook	-3
-Instagram	-3
-media		-1.5
-interview	-1.5
-shopping	-3
-buy		-3
-store		-3
-merchandise	-3
