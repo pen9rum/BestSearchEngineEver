@@ -49,10 +49,14 @@ export default function Home() {
                                         style={{ width: 17, height: 17, marginRight: '10%', tintColor: 'white' }}
                                     />
                                 </Link>
+                                <Link href={{
+                                    pathname: '/NBA/menu',
+                                    query: { type: 1 }
+                                }}>
                                 <Image
                                     source={require('../../assets/icons/menu.png')}
                                     style={{ width: 25, height: 20, marginLeft: '10%', tintColor: 'white' }}
-                                />
+                                /></Link>
                             </View>
                         </View>
                         <View style={styles.container}>
