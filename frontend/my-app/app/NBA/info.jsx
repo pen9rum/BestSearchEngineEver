@@ -62,22 +62,55 @@ export default function Home() {
                             </View>
                         </View>
                         <View style={styles.container}>
-                            <Text style={styles.headerText}>Player's Info</Text>
+                            <Text style={styles.headerText}>Player's Bio</Text>
                         </View>
                     </View>
 
                 </View>
                 {/* 文字欄 */}
                 <View style={{
-                    marginVertical: 10,
-                    padding: 5,
-                    width: 320,
-                    backgroundColor: 'rgba(0, 31, 63, 0.5)',
-                    borderRadius: 12
+                    width: '100%',
+                    height: '100%',
+                    backgroundColor: 'rgba(0, 31, 63, 0.8)',
                 }}>
-                    <Text>
-                        55555555555555555555555555555555555555555555555555555555555555555555556666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666
-                    </Text>
+                    <View style={{
+                        marginVertical: 10,
+                        padding: 5,
+                        width: 320,
+                        borderRadius: 12,
+                        marginLeft:'39%'
+                    }}>
+                     <View style={styles.newsWrapper}>
+                        <Link href={{
+                    pathname: 'https://www.basketball-reference.com/players/c/curryst01.html',
+                    query: { type: 1 }
+                }}>
+                            <View style={{ width: '100%' ,height:80}}>
+                                <Text ellipsizeMode="tail" style={{ fontSize: 16, color:'black', textAlign:'center', marginVertical:20}}>Stephen Curry Stats, Height, Weight, Position, Draft Status and more</Text>
+                            </View>
+                        </Link>
+                        </View>
+                        <View style={styles.newsWrapper}>
+                        <Link href={{
+                    pathname: 'https://www.espn.com/nba/player/stats/_/id/3975/stephen-curry',
+                    query: { type: 1 }
+                }}>
+                            <View style={{ width: '100%' ,height:80}}>
+                                <Text ellipsizeMode="tail" style={{ fontSize: 16, color:'black', textAlign:'center', marginVertical:20}}>Stephen Curry Career Stats - NBA - ESPN</Text>
+                            </View>
+                        </Link>
+                        </View>
+                        <View style={styles.newsWrapper}>
+                        <Link href={{
+                    pathname: ' https://www.espn.com/nba/player/_/id/3975/stephen-curry',
+                    query: { type: 1 }
+                }}>
+                            <View style={{ width: '100%' ,height:80}}>
+                                <Text ellipsizeMode="tail" style={{ fontSize: 16, color:'black', textAlign:'center', marginVertical:20}}>Stephen Curry - Golden State Warriors Point Guard - ESPN</Text>
+                            </View>
+                        </Link>
+                        </View>
+                </View>
                 </View>
             </View>
 
@@ -116,5 +149,17 @@ const styles = StyleSheet.create({
         padding: 12,
         fontSize: 24,
         fontFamily: 'DM Sans-Regular',
+    },
+    newsWrapper: {
+        flex: 1,
+        justifyContent: "space-around",
+        alignItems: "center",
+        flexDirection: "row",
+        marginTop: 5,
+        height: 100,
+        backgroundColor: "#4F577D",
+        borderRadius: 8,
+        width: 300
     }
 })
+
