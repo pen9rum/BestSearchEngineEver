@@ -20,7 +20,7 @@ const Result = () => {
       }}>
 
         <ImageBackground
-          source={require("../../assets/pic/stephenCurry.png")}
+          source={require("../../assets/pic/player.jpg")}
           resizeMode="cover"
           style={{
             display: 'flex',
@@ -69,28 +69,28 @@ const Result = () => {
             justifyContent: 'space-around',
           }}>
             <Text style={styles.statistic}>PPG</Text>
-            <Text style={styles.statistic}>25.5</Text>
+            <Text style={styles.statistic}>27.6</Text>
           </View>
           <View style={{
             flexDirection: 'column',
             justifyContent: 'space-around',
           }}>
             <Text style={styles.statistic}>RPG</Text>
-            <Text style={styles.statistic}>25.5</Text>
+            <Text style={styles.statistic}>4.4</Text>
           </View>
           <View style={{
             flexDirection: 'column',
             justifyContent: 'space-around',
           }}>
             <Text style={styles.statistic}>APG</Text>
-            <Text style={styles.statistic}>25.5</Text>
+            <Text style={styles.statistic}>4.6</Text>
           </View>
           <View style={{
             flexDirection: 'column',
             justifyContent: 'space-around',
           }}>
             <Text style={styles.statistic}>PIE</Text>
-            <Text style={styles.statistic}>25.5</Text>
+            <Text style={styles.statistic}>14.5</Text>
           </View>
         </View>
 
