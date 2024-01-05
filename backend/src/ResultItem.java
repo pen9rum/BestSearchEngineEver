@@ -1,4 +1,3 @@
-
 public class ResultItem {
     private String title;
     private String url;

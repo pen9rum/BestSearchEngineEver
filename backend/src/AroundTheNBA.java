@@ -43,7 +43,7 @@ public class AroundTheNBA {
             System.out.println("Url: " + "https://www.nba.com" + absHrefValue);
             System.out.println("Photo Src: " + photoSrc);
             System.out.println("-----------------------------");
-            HomePageLink.add(title,content,absHrefValue,photoSrc);
         }
     }
 }
+

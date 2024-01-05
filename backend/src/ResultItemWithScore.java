@@ -1,4 +1,5 @@
 
+
 public class ResultItemWithScore {
     private ResultItem resultItem;
     private float score;
