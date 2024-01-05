@@ -36,7 +36,7 @@ const Menu = () => {
             <Text style={styles.playerBioText}>Player Bio</Text>
           </TouchableOpacity></Link>
         <Link href={{
-          pathname: '/NBA/newshome',
+          pathname: '/NBA/news',
           query: { type: 1 }
         }}>
           <TouchableOpacity
@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
     color: '#FFF',
     fontFamily: 'Inter',
     fontSize: 20,
-    fontStyle: 'normal',
+    fontStyle: 'Inknut Antiqua',
     fontWeight: '600',
     lineHeight: 'normal',
     textAlign: 'center',
@@ -122,7 +122,7 @@ const styles = StyleSheet.create({
     color: '#FFF',
     fontFamily: 'Inter',
     fontSize: 20,
-    fontStyle: 'normal',
+    fontStyle: 'Inknut Antiqua',
     fontWeight: '600',
     lineHeight: 'normal',
     textAlign: 'center',
