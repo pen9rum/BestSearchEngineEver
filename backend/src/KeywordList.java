@@ -76,17 +76,17 @@ return totalScore;
                 new ResultItem("WIKI " + getUserInput(), "https://en.wikipedia.org/wiki/" + getUserInput()), 
                 30000 
             ));
-        otherResults.add(new ResultItemWithScore(
+       /* otherResults.add(new ResultItemWithScore(
                 new ResultItem("WIKI " + getUserInput(), "https://en.wikipedia.org/wiki/" + getUserInput()), 
                 30000 
-            ));
+            ));*/
         int count = 0;
         for (ResultItemWithScore resultItem : resultItemsWithScores) {
         	if(resultItem.getResultItem().getUrl().contains("nba.com/player/")) {
             	NBAstatUrl = resultItem.getResultItem().getUrl();
             }
             if (resultItem.getScore() > 0) {
-                if (count < 10) {
+                if (count < 3) {
                     topResults.add(resultItem);
                 } else {
                     otherResults.add(resultItem);

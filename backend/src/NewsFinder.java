@@ -43,52 +43,45 @@ public class NewsFinder {
     }
    
     public void googleQuery(String searchKeyword)
-    {
-     String url = null;    
-     try 
-     {  
-      String encodeKeyword=java.net.URLEncoder.encode( "NBA.com"+searchKeyword,"utf-8");
-      
-      url = "https://www.google.com/search?q="+ encodeKeyword +"&lr=lang_en";
-      Document document = Jsoup.connect(url).get();
+   	{
+   		String url = null;	   
+   		try 
+   		{		
+   			String encodeKeyword=java.net.URLEncoder.encode( "NBA.com"+searchKeyword,"utf-8");
+   			
+   			url = "https://www.google.com/search?q="+ encodeKeyword +"&lr=lang_en";
+   			Document document = Jsoup.connect(url).get();
 
                Elements searchResults = document.select("div.tF2Cxc");
                if (!searchResults.isEmpty()) {
                    Element firstResult = searchResults.first();
                    String resultUrl = firstResult.select("a[href]").attr("href");
                    playerUrl = resultUrl;
-                  // System.out.println(playerUrl);
                }
-     }
-     catch (Exception e)
-     {
-      System.out.println(e.getMessage());
-     }
-    } 
+   		}
+   		catch (Exception e)
+   		{
+   			System.out.println(e.getMessage());
+   		}
+   	}	
    
     public void findNewsWithKeyword() throws IOException, InterruptedException {
-     
-     
-    
-      Document doc = Jsoup.connect(playerUrl).get();
+        Document doc = Jsoup.connect(playerUrl).get();
+        
 
-      for (Element aElement : doc.select("div.PlayerNews_item__10b5O")) {
-             String title = aElement.select("p.PlayerNews_headline__w4cFW").text();
-             String content = aElement.select("p.PlayerNews_update__ntYMq").text();
-             String date = aElement.select("p.PlayerNews_date___Te0H").text();
-             //String absHrefValue = aElement.attr("href");
-             System.out.println("Title: " + title);
-             System.out.println("Content: " + content);
-             System.out.println("Date: " + date);
-             System.out.println("-----------------------------");
-             }
-      
-             
-              
-        ExecutorService executor = Executors.newFixedThreadPool(10); // 使用固定大小的線程池
+        for (Element aElement : doc.select("div.PlayerNews_item__10b5O")) {
+               String title = aElement.select("p.PlayerNews_headline__w4cFW").text();
+               String content = aElement.select("p.PlayerNews_update__ntYMq").text();
+               String date = aElement.select("p.PlayerNews_date___Te0H").text();
+               //String absHrefValue = aElement.attr("href");
+               System.out.println("Title: " + title);
+               System.out.println("Content: " + content);
+               System.out.println("Date: " + date);
+               System.out.println("-----------------------------");
+               }
+       // ExecutorService executor = Executors.newFixedThreadPool(10); // 使用固定大小的線程池
 
-      
-  /*for (Element newsElement : newsElements) {
+        /*for (Element newsElement : newsElements) {
             executor.submit(() -> {
                 String url = newsElement.absUrl("href");
                 try {
@@ -114,9 +107,7 @@ public class NewsFinder {
         for (int i = 0; i < Math.min(newsWithKeyword.size(), 10); i++) {
             NewsItem item = newsWithKeyword.get(i);
             System.out.println("Title: " + item.getTitle() + " | URL: " + item.getUrl() + " | Count: " + item.getKeywordCount());
-        }
-        System.out.println("---------------------------------------------------------------------");*/
-         
+        }*/
     }
 
     private int countOccurrences(String text, String keyword) {
@@ -162,5 +153,6 @@ public class NewsFinder {
    
 
 
- 
+	
 }
+

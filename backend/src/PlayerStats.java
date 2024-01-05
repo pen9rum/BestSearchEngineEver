@@ -18,6 +18,7 @@ public class PlayerStats {
      try {
          Connection connection = Jsoup.connect(playerUrl)
                  .userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36");
+         int delayMillis = (int) (Math.random() * 50) + 100; // Random delay between 1 to 5 seconds
          Thread.sleep(DynamicDelayCrawler.getCurrentDelay());
          Document document = connection.get();
 

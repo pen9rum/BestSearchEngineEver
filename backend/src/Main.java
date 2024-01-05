@@ -16,7 +16,7 @@ public class Main {
         try {
         	AroundTheNBA aroundTheNBA = new AroundTheNBA();
     		aroundTheNBA.printAroundTheNBA();
-            DatabasePlayerSearch DBsearch = new DatabasePlayerSearch();
+    		DatabasePlayerSearch DBsearch = new DatabasePlayerSearch();
         	Scanner scn = new Scanner(System.in);
         	//System.out.print("Enter the name to search: ");
         	String inputName;
@@ -33,23 +33,23 @@ public class Main {
         	    }
         	    break;
         	}
-        	/*List<String> matchingNames = DBsearch.searchPlayerByName(inputName);
-        	while(matchingNames.size()==0)
-        	{
-        		System.out.print("Enter the name to search: ");
+        	
+        	List<String> matchingNames = DBsearch.searchPlayerByName(inputName);
+        	while(matchingNames.isEmpty()) {
+        		System.out.println("not found");
+        		System.out.println("Enter again:");
         		inputName = scn.nextLine();
         		matchingNames = DBsearch.searchPlayerByName(inputName);
-        	}      	
+        	}
+        		
         		System.out.println("Matching Names:");
         		for (String fullName : matchingNames) {
         			System.out.println(fullName);
-        		} */     	
+        		}    	
         	System.out.print("Enter the name among them and press Enter : ");
             String queryInput = scn.nextLine();
             NewsFinder finder = new NewsFinder(queryInput);
-        	System.out.print("Enter the searchValue: ");
-            int searchValue = scn.nextInt();
-            GoogleQuery googleQuery = new GoogleQuery(queryInput, searchValue);
+            GoogleQuery googleQuery = new GoogleQuery(queryInput);
             finder.googleQuery(queryInput);
             finder.findNewsWithKeyword();
             

@@ -36,11 +36,12 @@ public class GoogleQuery
 	public String searchKeyword;
 	public String url;
 	public String content;	
-	public GoogleQuery(String searchKeyword,int search_value)
+	public GoogleQuery(String searchKeyword)
 	{
 		this.searchKeyword = searchKeyword;	   
 		try 
-		{		
+		{	
+			int search_value = 15;
 			String encodeKeyword=java.net.URLEncoder.encode(searchKeyword,"utf-8");
 			
 			this.url = "https://www.google.com/search?q="+encodeKeyword+"_nba"+"&oe=utf8&num="+search_value;

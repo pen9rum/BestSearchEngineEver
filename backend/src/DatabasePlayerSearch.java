@@ -30,4 +30,3 @@ public class DatabasePlayerSearch {
         return matchingNames;
     }
 }
-
