@@ -63,7 +63,7 @@ export default function Home() {
                             <TextInput
                                 style={{
                                     flex: 1,
-                                    backgroundColor: "rgb(215 215 215)",
+                                    backgroundColor: "rgb(215 215 215, 0)",
                                     height: "100%",
                                     fontSize: 14,
                                     marginLeft: '10%'
