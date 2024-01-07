@@ -10,8 +10,7 @@ import java.util.concurrent.ExecutorService;
 public class AroundTheNBA {
     
     public void printAroundTheNBA() {
-        ExecutorService executor = Executors.newFixedThreadPool(10); // Create a thread pool with 10 threads
-        
+    	ExecutorService executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());        
         executor.submit(() -> {
             try {
                 Connection connection = Jsoup.connect("https://www.nba.com/")
@@ -23,7 +22,6 @@ public class AroundTheNBA {
                 e.printStackTrace();
             }
         });
-
         executor.shutdown(); 
     }
 
@@ -43,6 +41,7 @@ public class AroundTheNBA {
             System.out.println("Url: " + "https://www.nba.com" + absHrefValue);
             System.out.println("Photo Src: " + photoSrc);
             System.out.println("-----------------------------");
+            HomePageLink.add(title,content,absHrefValue,photoSrc);
         }
     }
 }

@@ -6,7 +6,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="/Users/ycyao/Downloads/jsoup-1.16.2.jar"/>
-	<classpathentry kind="lib" path="/Users/ycyao/eclipse-workspace/backend/mysql-connector-j-8.0.32.jar"/>
+	<classpathentry kind="lib" path="C:/Users/王瀚/Downloads/jsoup-1.16.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/王瀚/Downloads/mysql-connector-j-8.0.32.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
