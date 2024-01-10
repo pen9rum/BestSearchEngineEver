@@ -15,6 +15,7 @@
     "@react-navigation/bottom-tabs": "^6.5.10",
     "@react-navigation/native": "^6.1.9",
     "@react-navigation/stack": "^6.3.19",
+    "axios": "^1.6.5",
     "buffer": "^6.0.3",
     "expo": "^49.0.3",
     "expo-av": "~13.4.1",

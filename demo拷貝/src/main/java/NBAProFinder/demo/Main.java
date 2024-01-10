@@ -52,7 +52,7 @@ public class Main {
             int searchValue = scn.nextInt();
             GoogleQuery googleQuery = new GoogleQuery(queryInput, searchValue);
             finder.googleQuery(queryInput);
-            finder.findNewsWithKeyword();
+//            finder.findNewsWithKeyword();
             
             ArrayList<ResultItem> results = googleQuery.query();
             for (ResultItem result : results) {
@@ -85,9 +85,9 @@ public class Main {
                     fileSC.nextLine();
                 }
             }
-            kLst.sortAndOutput();
-            PlayerStats stats = new PlayerStats(kLst.getNBAstatUrl());
-            stats.getStats();
+//            kLst.sortAndOutput();
+//            PlayerStats stats = new PlayerStats(kLst.getNBAstatUrl());
+//            stats.getStats();
         } catch (IOException e) {
             e.printStackTrace();
         } catch (InterruptedException e1) {

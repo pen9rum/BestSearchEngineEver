@@ -37,21 +37,23 @@ public class GoogleQuery
 {
 	public String searchKeyword;
 	public String url;
-	public String content;	
-	public GoogleQuery(String searchKeyword,int search_value)
-	{
-		this.searchKeyword = searchKeyword;	   
-		try 
-		{		
-			String encodeKeyword=java.net.URLEncoder.encode(searchKeyword,"utf-8");
-			
-			this.url = "https://www.google.com/search?q="+encodeKeyword+"_nba"+"&oe=utf8&num="+search_value;
+	public String content;
+	public GoogleQuery(String searchKeyword, int search_value) {
+		this.searchKeyword = searchKeyword;
+		try {
+			System.out.println("Original Keyword: " + searchKeyword); // 打印原始关键词
+			System.out.println("Search Value: " + search_value); // 打印搜索值
+
+			String encodeKeyword = java.net.URLEncoder.encode(searchKeyword, "utf-8");
+			System.out.println("Encoded Keyword: " + encodeKeyword); // 打印编码后的关键词
+
+			this.url = "https://www.google.com/search?q=" + encodeKeyword + "_nba" + "&oe=utf8&num=" + search_value;
+			System.out.println("Generated URL: " + this.url); // 打印生成的 URL
+		} catch (Exception e) {
+			e.printStackTrace(); // 打印异常的堆栈跟踪
 		}
-		catch (Exception e)
-		{
-			System.out.println(e.getMessage());
-		}
-	}	
+	}
+
 	private String fetchContent() throws IOException
 	{	
 		String retVal = "";

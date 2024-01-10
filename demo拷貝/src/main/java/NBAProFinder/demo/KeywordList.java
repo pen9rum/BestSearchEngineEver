@@ -71,8 +71,8 @@ executor.shutdown();
 return totalScore;
 }
 	
-	public String sortAndOutput() {
-        String output = null;
+	public String sortAndOutput(SearchGoogleDTO searchGoogleDTO) {
+        String output = "";
 		sort(0, resultItemsWithScores.size() - 1);
         topResults.add(new ResultItemWithScore(
                 new ResultItem("WIKI " + getUserInput(), "https://en.wikipedia.org/wiki/" + getUserInput()), 
@@ -103,10 +103,18 @@ return totalScore;
         {
         	output += "Results Below are player info:";
         	for (ResultItemWithScore item : topResults) {
-        		
+
+
                 output += "Score: " + (item.getScore() >= 0 ? item.getScore() : "uncalculated") +
                         " Title: " + item.getResultItem().getTitle() +
                         ", URL: " + item.getResultItem().getUrl();
+
+                String score = (item.getScore() >= 0 ? ""+item.getScore() : "uncalculated");
+                String title = item.getResultItem().getTitle();
+                String url = item.getResultItem().getUrl();
+                BioAndOthersDTO bioAndOthersDTO = new BioAndOthersDTO(score, title, url);
+
+                searchGoogleDTO.setPlayerInfo(bioAndOthersDTO);
             }
         }
         else
@@ -121,8 +129,13 @@ return totalScore;
                 output += "Score: " + (item.getScore() >= 0 ? item.getScore() : "uncalculated") +
                         " Title: " + item.getResultItem().getTitle() +
                         ", URL: " + item.getResultItem().getUrl();
-               
-                
+
+                String score = (item.getScore() >= 0 ? ""+item.getScore() : "uncalculated");
+                String title = item.getResultItem().getTitle();
+                String url = item.getResultItem().getUrl();
+                BioAndOthersDTO bioAndOthersDTO = new BioAndOthersDTO(score, title, url);
+
+                searchGoogleDTO.setOthers(bioAndOthersDTO);
             }
         	
         }

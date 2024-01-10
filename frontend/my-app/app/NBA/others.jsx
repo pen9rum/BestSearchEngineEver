@@ -1,10 +1,29 @@
 import { Text, TextInput } from "react-native-paper";
 import { View, ImageBackground } from "react-native";
 import { Link, Tabs } from "expo-router";
-import { Image, StyleSheet } from 'react-native';
-import { useState } from "react";
+import { Image, StyleSheet, TouchableOpacity, Linking } from 'react-native';
+import { useState, useEffect } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Home() {
+
+    const [othersData, setOthersData] = useState([]);
+
+    useEffect(() => {
+        const fetchGoogleSearchData = async () => {
+            try {
+                const storedOthersData = await AsyncStorage.getItem('OthersData');
+                if (storedOthersData) {
+                    setOthersData(JSON.parse(storedOthersData));
+                }
+                console.log(storedOthersData)
+            } catch (error) {
+                console.error('Error fetching Google Search data from AsyncStorage:', error);
+            }
+        };
+
+        fetchGoogleSearchData();
+    }, []);
 
     return (
         <ImageBackground
@@ -53,10 +72,10 @@ export default function Home() {
                                     pathname: '/NBA/menu',
                                     query: { type: 1 }
                                 }}>
-                                <Image
-                                    source={require('../../assets/icons/menu.png')}
-                                    style={{ width: 25, height: 20, marginLeft: '10%', tintColor: 'white' }}
-                                /></Link>
+                                    <Image
+                                        source={require('../../assets/icons/menu.png')}
+                                        style={{ width: 25, height: 20, marginLeft: '10%', tintColor: 'white' }}
+                                    /></Link>
                             </View>
                         </View>
                         <View style={styles.container}>
@@ -65,55 +84,42 @@ export default function Home() {
                     </View>
 
                 </View>
+
+
+
+
                 {/* 文字欄 */}
-                <View style={{
-                    marginVertical: 10,
-                    padding: 5,
-                    width: 320,
-                    backgroundColor: 'rgba(255, 255, 255, 0.6)',
-                    borderRadius: 12
-                }}>
-                    <View style={{ flexDirection: 'column' }}>
-                    <Link href={{
-                    pathname: 'https://sports.yahoo.com/nba/players/4612/',
-                    query: { type: 1 }
-                }}>
-                        <View style={{ flexDirection: 'row' }}>
-                            <Image
-                                source={require('../../assets/icons/link.png')}
-                                style={{ width: 17, height: 17, marginLeft: 10, marginTop:10, tintColor: 'white'}}
-                            />
-                            <Text style={{ width: 250,fontWeight:'bold',marginLeft: 10,marginTop:5 }}>
-                                Stephen Curry (PG) Stats, News, Rumors, Bio, Video - Yahoo Sports
-                            </Text>
-                        </View>
-                        </Link>
-                    </View>
-                    </View>
-                    <View style={{
-                    marginVertical: 10,
-                    padding: 5,
-                    width: 320,
-                    backgroundColor: 'rgba(255, 255, 255, 0.6)',
-                    borderRadius: 12
-                }}>
-                    <View style={{ flexDirection: 'column' }}>
-                    <Link href={{
-                    pathname: 'https://www.nba.com/stats/player/201939/traditional',
-                    query: { type: 1 }
-                }}>
-                        <View style={{ flexDirection: 'row' }}>
-                            <Image
-                                source={require('../../assets/icons/link.png')}
-                                style={{ width: 17, height: 17, marginLeft: 10, marginTop:10, tintColor: 'white' }}
-                            />
-                            <Text style={{ width: 250,fontWeight:'bold',marginLeft: 10,marginTop:5 }}>
-                            Stephen Curry | Golden State Warriors - NBA.com
-                            </Text>
-                        </View>
-                        </Link>
-                    </View>
-                </View>
+                {
+                    othersData.length > 0 ?
+                        othersData.map((othersItem, index) => (
+
+                            <View key={index} style={{
+                                marginVertical: 10,
+                                padding: 5,
+                                width: 320,
+                                backgroundColor: 'rgba(255, 255, 255, 0.6)',
+                                borderRadius: 12
+                            }}>
+
+                                <View style={{ flexDirection: 'column' }}>
+                                    <TouchableOpacity onPress={() => Linking.openURL(othersItem.url)}>
+                                        <View style={{ flexDirection: 'row' }}>
+                                            <Image
+                                                source={require('../../assets/icons/link.png')}
+                                                style={{ width: 17, height: 17, marginLeft: 10, marginTop: 10, tintColor: 'white' }}
+                                            />
+                                            <Text style={{ width: 250, fontWeight: 'bold', marginLeft: 10, marginTop: 5 }}>
+                                                {othersItem.title}
+                                            </Text>
+                                        </View>
+
+                                    </TouchableOpacity>
+
+                                </View>
+                            </View>
+                        )) : <Text>No news data available</Text>
+                }
+
             </View>
 
         </ImageBackground>

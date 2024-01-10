@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     lineHeight: 'normal',
     textAlign: 'center',
-    
+
   },
   playerNewsGroup: {
     width: 256,

@@ -6,14 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin(origins = "*")
 public class MyController {
 	
 	private KeywordList kLst;
@@ -28,18 +25,22 @@ public class MyController {
     	
     	String name = firstname;
     	DatabasePlayerSearch DBsearch = new DatabasePlayerSearch();
+        System.out.println(name);
     	List<String> matchingNames = DBsearch.searchPlayerByName(name);
     	return matchingNames;
     }
     @PostMapping("/searchGoogle")
-    public String searchGoogle(@RequestBody String fullname) throws IOException, InterruptedException {
-        
+    public SearchGoogleDTO searchGoogle(@RequestBody String fullname) throws IOException, InterruptedException {
+        System.out.println("Search Google: "+ fullname);
     	// 在這裡使用 frontendInput 進行後續處理
     	String output;
     	NewsFinder finder = new NewsFinder(fullname);
         GoogleQuery googleQuery = new GoogleQuery(fullname, 30);
         finder.googleQuery(fullname);
-        output = finder.findNewsWithKeyword();
+
+        SearchGoogleDTO searchGoogleDTO = new SearchGoogleDTO();
+        output = finder.findNewsWithKeyword(searchGoogleDTO);
+
         ArrayList<ResultItem> results = googleQuery.query();
         kLst = new KeywordList(fullname);
         KeywordCounter counter = null;
@@ -66,19 +67,26 @@ public class MyController {
                 fileSC.nextLine();
             }
         }
-        output += kLst.sortAndOutput();
-    	return output ;
+        output += kLst.sortAndOutput(searchGoogleDTO);
+        System.out.println(output);
+    	return searchGoogleDTO ;
     }
     @PostMapping("/searchStats")
-    public String searchStats(@RequestBody String url) throws InterruptedException {
+    public StatsDTO searchStats() throws InterruptedException {
+        System.out.println("Search stats");
         // 在這裡使用 frontendInput 進行後續處理
-    	PlayerStats stats = new PlayerStats(kLst.getNBAstatUrl());
-    	return stats.getStats();
+        String url = kLst.getNBAstatUrl();
+        System.out.println(url);
+    	PlayerStats stats = new PlayerStats(url);
+        StatsDTO output = stats.getStats();
+//        System.out.println(output);
+    	return output;
     }
    
     
     @RestController
     @RequestMapping("/api/nba")
+    @CrossOrigin(origins = "*")
     public class NBAController {
 
         private final AroundTheNBA aroundTheNBA;

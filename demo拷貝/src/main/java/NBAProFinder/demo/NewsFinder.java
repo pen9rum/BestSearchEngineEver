@@ -51,14 +51,19 @@ public class NewsFinder {
    			String encodeKeyword=java.net.URLEncoder.encode( "NBA.com"+searchKeyword,"utf-8");
    			
    			url = "https://www.google.com/search?q="+ encodeKeyword +"&lr=lang_en";
+//            System.out.println("QQ0");
+               System.out.println(url);
    			Document document = Jsoup.connect(url).get();
-
+//            System.out.println("QQ1");
                Elements searchResults = document.select("div.tF2Cxc");
+//            System.out.println("QQ2");
                if (!searchResults.isEmpty()) {
                    Element firstResult = searchResults.first();
                    String resultUrl = firstResult.select("a[href]").attr("href");
                    playerUrl = resultUrl;
-                  // System.out.println(playerUrl);
+                   System.out.println("First Result URL: " + playerUrl); // 打印找到的第一个结果的 URL
+               }else {
+                   System.out.println("No results found"); // 如果没有找到结果
                }
    		}
    		catch (Exception e)
@@ -67,23 +72,31 @@ public class NewsFinder {
    		}
    	}	
    
-    public String findNewsWithKeyword() throws IOException, InterruptedException {
-    	
-    	
-    	 String output = null;
-    	 Document doc = Jsoup.connect(playerUrl).get();
+    public String findNewsWithKeyword(SearchGoogleDTO searchGoogleDTO) throws IOException, InterruptedException {
 
-    	 for (Element aElement : doc.select("div.PlayerNews_item__10b5O")) {
-             String title = aElement.select("p.PlayerNews_headline__w4cFW").text();
-             String content = aElement.select("p.PlayerNews_update__ntYMq").text();
-             String date = aElement.select("p.PlayerNews_date___Te0H").text();
-             //String absHrefValue = aElement.attr("href");
-             output += title + "\n" + content + "\n" + date + "\n";
-             //System.out.println("Title: " + title);
-             //System.out.println("Content: " + content);
-             //System.out.println("Date: " + date);
-             //System.out.println("-----------------------------");
-             }
+        String output = "";
+        System.out.println("Connecting to URL: " + playerUrl); // 打印正在连接的 URL
+        Document doc = Jsoup.connect(playerUrl).get();
+
+        for (Element aElement : doc.select("div.PlayerNews_item__10b5O")) {
+            String title = aElement.select("p.PlayerNews_headline__w4cFW").text();
+            String content = aElement.select("p.PlayerNews_update__ntYMq").text();
+            String date = aElement.select("p.PlayerNews_date___Te0H").text();
+
+            NewsDTO news = new NewsDTO();
+            news.setTitle(title);
+            news.setContent(content);
+            news.setDate(date);
+
+            searchGoogleDTO.addNews(news);
+            output += title + "\n" + content + "\n" + date + "\n";
+
+            // 打印每个新闻项的信息
+            System.out.println("Title: " + title);
+            System.out.println("Content: " + content);
+            System.out.println("Date: " + date);
+            System.out.println("-----------------------------");
+        }
     	 
              
               
